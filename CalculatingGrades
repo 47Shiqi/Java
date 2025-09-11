@@ -10,19 +10,19 @@ public class CalculatingGrades {
 		System.out.print("Enter the name of the corse: ");
 		String courseName = input.nextLine();
 		
-		System.out.print("Enter the time you spent on the course per week in minutes: ");
+		System.out.print("Enter the time you spent on this course per week in minutes: ");
 		int time = input.nextInt();
 		
-		System.out.print("Enter the first homework score: ");
+		System.out.print("Enter the first homework score(enter an integer): ");
 		int hw1 = input.nextInt();
 
-		System.out.print("Enter the second homework score: ");
+		System.out.print("Enter the second homework score(enter an integer): ");
 		int hw2 = input.nextInt();
 		
-		System.out.print("Enter the third homework score: ");
+		System.out.print("Enter the third homework score(enter an integer): ");
 		int hw3 = input.nextInt();
 		
-		System.out.print("Enter the fourth homework score: ");
+		System.out.print("Enter the fourth homework score(enter an integer): ");
 		int hw4 = input.nextInt();
 		
 		System.out.print("Enter first quiz score: ");
@@ -40,13 +40,12 @@ public class CalculatingGrades {
 		int min = (time % 60);
 		System.out.println("Average time spent for it in a week: " + hour + " hour and " + min + " minute(s)");
 		
-		double avg_hw = (hw1 + hw2 + hw3 + hw4) / 4.0; ///////
-		double avg_quiz = (quiz1 +quiz2) / 2;
+		double avg_hw = (hw1 + hw2 + hw3 + hw4) / 4.0; 
+		double avg_quiz = (quiz1 + quiz2) / 2;
 		double overall = (0.35 * avg_hw) + (0.15 * avg_quiz) + (0.50 * exam);
 		System.out.println("Average homework grade: " + avg_hw);
 		System.out.println("Average quiz grade: " + avg_quiz);
 		System.out.println("Final exam grade: " + exam);
-		System.out.println("Overall grade: " + (int)overall);
-		
+		System.out.println("Overall grade: " + (int)overall);		
 	}
 }
