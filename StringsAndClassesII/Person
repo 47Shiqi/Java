@@ -1,0 +1,53 @@
+package javaPack;
+
+public class Person 
+{
+	//The private access modifier restricts
+	//direct access to this field from
+	//outside the Person class
+	private String firstname;
+	private String lastname;
+	private int userbirthyr;
+	
+	public Person(String fname, String lname, int theyear)
+	{
+		//firstname and lastname are instance variables
+		//instance variables are fields (variables) declared
+		//within a class but outside of any method, constructor, or block.
+		this.firstname = fname;
+		this.lastname = lname;
+		this.userbirthyr = theyear;
+	}
+	
+	public String Fullname()
+	{
+		String completename = firstname + " " + lastname;
+		return completename;
+	}
+	
+	public String FullnameUpper()
+	{
+		String uppername = Fullname().toUpperCase();
+		return uppername;
+	}
+	
+	public String FullnameLower()
+	{
+		String lowername;
+		lowername = Fullname().toLowerCase();
+		return lowername;
+	}
+	
+	public int FullnameLength()
+	{
+		int length = Fullname().length();
+		return length;
+	}
+	
+	public int PersonAge()
+	{
+		int age;
+		age = 2025 - userbirthyr;
+		return age;
+	}
+}
