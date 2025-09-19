@@ -29,21 +29,21 @@ public class Person
 	public String FullnameUpper()
 	{
 		String uppername;
-		uppername = (firstname + " " + lastname).toUpperCase();
+		uppername = Fullname().toUpperCase();
 		return uppername;
 	}
 	
 	public String FullnameLower()
 	{
 		String lowername;
-		lowername = (firstname + " " + lastname).toLowerCase();
+		lowername = Fullname().toLowerCase();
 		return lowername;
 	}
 	
 	public int FullnameLength()
 	{
 		int length;
-		length = (firstname + lastname).length();
+		length = Fullname().length();
 		return length;
 	}
 	
