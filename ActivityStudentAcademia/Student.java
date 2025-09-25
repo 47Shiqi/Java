@@ -30,26 +30,26 @@ public class Student
 	
 	public Double GetpGpa()
 	{
-		double pGPA_4_scale = pGPA / 100.0 * 4;
+		double pGPA_4_scale = pGPA / 100.0 * 4.0;
 		return pGPA_4_scale;
 	}
 	
 	public Double GetcGpa()
 	{
-		double cGPA_4_scale = cGPA / 100.0 * 4;
+		double cGPA_4_scale = cGPA / 100.0 * 4.0;
 		return cGPA_4_scale;
-	}
-	
-	public Double updateGpa_4()
-	{
-		double avg_4 = (GetpGpa() + GetcGpa()) / 2;
-		return avg_4;
 	}
 	
 	public Double updateGpa_100()
 	{
 		double avg_100 = (pGPA + cGPA) / 2.0;
 		return avg_100;
+	}
+	
+	public Double updateGpa_4()
+	{
+		double avg_4 = updateGpa_100() / 100.0 * 4.0;
+		return avg_4;
 	}
 	
 	public Boolean promote()
@@ -71,5 +71,4 @@ public class Student
 		}
 		return ifHonor;
 	}
-	
 }
