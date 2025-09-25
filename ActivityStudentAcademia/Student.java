@@ -22,9 +22,54 @@ public class Student
 		return fullname;
 	}
 	
-	public String GetGrade()
+	public Integer GetGrade()
 	{
-		String fullname = firstname + " " + lastname;
+		grade = grade + 1;
 		return grade;
 	}
+	
+	public Double GetpGpa()
+	{
+		double pGPA_4_scale = pGPA / 100.0 * 4;
+		return pGPA_4_scale;
+	}
+	
+	public Double GetcGpa()
+	{
+		double cGPA_4_scale = cGPA / 100.0 * 4;
+		return cGPA_4_scale;
+	}
+	
+	public Double updateGpa_4()
+	{
+		double avg_4 = (GetpGpa() + GetcGpa()) / 2;
+		return avg_4;
+	}
+	
+	public Double updateGpa_100()
+	{
+		double avg_100 = (pGPA + cGPA) / 2.0;
+		return avg_100;
+	}
+	
+	public Boolean promote()
+	{
+		boolean ifPromote = false;
+		if(GetcGpa() >= 2.6)
+		{
+			ifPromote = true;
+		}
+		return ifPromote;
+	}
+	
+	public Boolean isHonorRoll()
+	{
+		boolean ifHonor = false;
+		if(updateGpa_4() >= 3.5)
+		{
+			ifHonor = true;
+		}
+		return ifHonor;
+	}
+	
 }
