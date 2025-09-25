@@ -57,7 +57,7 @@ public class CollectInfo
 		
 		if(studentinfo.isHonorRoll() == true)
 		{
-			System.out.println("You are in the Honor Roll because your current GPA is abovr 3.5!");
-		}
+			System.out.println("You are in the Honor Roll because your current GPA is above 3.5!");
+		}	
 	}
 }
