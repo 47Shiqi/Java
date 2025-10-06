@@ -36,10 +36,10 @@ public class Airplane
 	{
 		double x = (theDist * Math.sin(Math.toRadians(theDir))) + (Mdist * Math.sin(Math.toRadians(Mdir)));
 		double y = (theDist * Math.cos(Math.toRadians(theDir))) + (Mdist * Math.cos(Math.toRadians(Mdir)));
-		NewDist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		NewDist = Math.sqrt(x*x + y*y);
 		NewDist = Math.round(NewDist * 100.0) / 100.0;
 		
-		double DoubleNewDir = Math.toDegrees(Math.atan2(x, y));
+		double DoubleNewDir = (Math.atan2(x, y)) * 180.0 / Math.PI;
 		NewDir = (int)DoubleNewDir;
 		if(NewDir < 0)
 		{
@@ -71,9 +71,28 @@ public class Airplane
 	
 	public String toString()
 	{
-		String StrDir = String.format("%03d", theDir);
+		String StrDir = ThreePlaces(theDir);
 		allField = theCs + " - " + theDist + " miles away at bearing " + StrDir + "°, altitude " + theAlt + " feet";
 		return allField;
+	}
+	
+	public String ThreePlaces(int dir)
+	{
+		String strDirection = "";
+		if(dir < 10)
+		{
+			strDirection = "00" + dir;
+		}
+		else if(dir < 100)
+		{
+			strDirection = "0" + dir;
+		}
+		else
+		{
+			strDirection = "" + dir;
+		}
+		
+		return strDirection;
 	}
 	
 	public double distTo(Airplane other)
@@ -83,9 +102,9 @@ public class Airplane
 	
 	public double CalcDist(double Dist1, int Dir1, double Dist2, int Dir2)
 	{
-		double xDist = (Dist1 * Math.sin(Math.toRadians(Dir1))) - (Dist2 * Math.sin(Math.toRadians(Dir2)));
-		double yDist = (Dist1 * Math.cos(Math.toRadians(Dir1))) - (Dist2 * Math.cos(Math.toRadians(Dir2)));
-		double DistBt = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+		double xDist = (Dist1 * Math.sin((Dir1) * Math.PI / 180.0)) - (Dist2 * Math.sin((Dir2) * Math.PI / 180.0));
+		double yDist = (Dist1 * Math.cos((Dir1)* Math.PI / 180.0)) - (Dist2 * Math.cos((Dir2)* Math.PI / 180.0));
+		double DistBt = Math.sqrt(xDist*xDist + yDist*yDist);
 		DistBt = Math.round(DistBt * 100.0) / 100.0;
 		return DistBt;
 	}
@@ -98,13 +117,17 @@ public class Airplane
 	
 	public int CalcAlt(int Alt1, int Alt2)
 	{
-		int Height = Math.abs(Alt1 - Alt2);
+		int Height = Alt1 - Alt2;
+		if(Height < 0)
+		{
+			Height = -Height;
+		}
 		return Height;
 	}
 	
 	public String NewPosition()
 	{
-		String StrDir = String.format("%03d", NewDir);
+		String StrDir = ThreePlaces(theDir);
 		allField = theCs + " - " + NewDist + " miles away at bearing " + StrDir + "°, altitude " + getAlt() + " feet";
 		return allField;
 	}
