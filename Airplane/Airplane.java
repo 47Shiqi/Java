@@ -54,13 +54,10 @@ public class Airplane
 	
 	public void loseAlt(int howmany)
 	{
-		if(theAlt < 1000)
+		NewAlt = theAlt - (howmany * 1000);
+		if(NewAlt < 0)
 		{
 			NewAlt = 0;
-		}
-		else
-		{
-			NewAlt = theAlt - (howmany * 1000);
 		}
 	}
 	
