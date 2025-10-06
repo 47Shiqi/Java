@@ -42,7 +42,35 @@ public class CollectInfo
 		planeinfo2.move(8.0, 135);
 		planeinfo3.move(5.0, 55);
 		
-		Output ALLinfo = new Output();
-		ALLinfo.printEverything(planeinfo1, planeinfo2, planeinfo3);
+		System.out.println("\nInitial Positions");
+        System.out.println("Airplane 1: " + planeinfo1.toString());
+        System.out.println("Airplane 2: " + planeinfo2.toString());
+        System.out.println("Airplane 3: " + planeinfo3.toString());
+        
+        System.out.println("\nInitial Distances");
+		System.out.println("The distance between Airplane 1 and Airplane 2 is " + planeinfo1.distTo(planeinfo2) + " miles");
+		System.out.println("The distance between Airplane 1 and Airplane 3 is " + planeinfo1.distTo(planeinfo3) + " miles");
+		System.out.println("The distance between Airplane 2 and Airplane 3 is " + planeinfo2.distTo(planeinfo3) + " miles");
+		
+		System.out.println("\nInitial Height Differences");
+		System.out.println("The difference in height between Airplane 1 and Airplane 2 is " + planeinfo1.AltTo(planeinfo2) + " feet");
+		System.out.println("The difference in height between Airplane 1 and Airplane 3 is " + planeinfo1.AltTo(planeinfo3) + " feet");
+		System.out.println("The difference in height between Airplane 2 and Airplane 3 is " + planeinfo2.AltTo(planeinfo3) + " feet");
+		
+		
+		System.out.println("\nNew Positions");
+		System.out.println("Airplane 1: " + planeinfo1.NewPosition());
+		System.out.println("Airplane 2: " + planeinfo2.NewPosition());
+		System.out.println("Airplane 3: " + planeinfo3.NewPosition());
+		
+		System.out.println("\nNew Distances");
+		System.out.println("The distance between Airplane 1 and Airplane 2 is " + planeinfo1.NewDistBt(planeinfo2) + " miles");
+		System.out.println("The distance between Airplane 1 and Airplane 3 is " + planeinfo1.NewDistBt(planeinfo3) + " miles");
+		System.out.println("The distance between Airplane 2 and Airplane 3 is " + planeinfo2.NewDistBt(planeinfo3) + " miles");
+		
+		System.out.println("\nNew Height Differences");
+		System.out.println("The difference in height between Airplane 1 and Airplane 2 is " + planeinfo1.NewHeight(planeinfo2) + " feet");
+		System.out.println("The difference in height between Airplane 1 and Airplane 3 is " + planeinfo1.NewHeight(planeinfo3) + " feet");
+		System.out.println("The difference in height between Airplane 2 and Airplane 3 is " + planeinfo2.NewHeight(planeinfo3) + " feet");
 	}
 }
