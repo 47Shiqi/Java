@@ -34,8 +34,8 @@ public class Airplane
 	
 	public void move(double Mdist, int Mdir)
 	{
-		double x = (theDist * Math.sin(Math.toRadians(theDir))) + (Mdist * Math.sin(Math.toRadians(Mdir)));
-		double y = (theDist * Math.cos(Math.toRadians(theDir))) + (Mdist * Math.cos(Math.toRadians(Mdir)));
+		double x = (theDist * Math.sin((theDir) * Math.PI / 180.0)) + (Mdist * Math.sin((Mdir) * Math.PI / 180.0));
+		double y = (theDist * Math.cos((theDir) * Math.PI / 180.0)) + (Mdist * Math.cos((Mdir) * Math.PI / 180.0));
 		NewDist = Math.sqrt(x*x + y*y);
 		NewDist = Math.round(NewDist * 100.0) / 100.0;
 		
@@ -127,7 +127,7 @@ public class Airplane
 	
 	public String NewPosition()
 	{
-		String StrDir = ThreePlaces(theDir);
+		String StrDir = ThreePlaces(NewDir);
 		allField = theCs + " - " + NewDist + " miles away at bearing " + StrDir + "°, altitude " + getAlt() + " feet";
 		return allField;
 	}
@@ -141,5 +141,4 @@ public class Airplane
 	{
 		return CalcAlt(NewAlt, other.NewAlt);
 	}
-	
 }
