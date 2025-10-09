@@ -1,3 +1,4 @@
+// Gathers all info and does all calculations to the data
 package javaPack;
 
 public class Airplane 
@@ -14,6 +15,7 @@ public class Airplane
 
 	public Airplane()
 	{
+		// Default constructor Airplane - assign values to the first default plane
 		this.theCs  = "AAA01";
 		this.theDist = 1.0;
 		this.theDir = 0;
@@ -22,6 +24,7 @@ public class Airplane
 	
 	public Airplane(String cs, double dist, int dir, int alt)
 	{
+		// Constructor that collect info for the other planes 
 		this.theCs  = cs.toUpperCase();
 		this.theDist = dist;
 		this.theDir = dir;
@@ -34,6 +37,7 @@ public class Airplane
 	
 	public void move(double Mdist, int Mdir)
 	{
+		// Calculate the new distance of a plane after it moves
 		double x = (theDist * Math.sin((theDir) * Math.PI / 180.0)) + (Mdist * Math.sin((Mdir) * Math.PI / 180.0));
 		double y = (theDist * Math.cos((theDir) * Math.PI / 180.0)) + (Mdist * Math.cos((Mdir) * Math.PI / 180.0));
 		NewDist = Math.sqrt(x*x + y*y);
@@ -49,11 +53,13 @@ public class Airplane
 	
 	public void gainAlt(int howmany)
 	{
+		// increase the plane's altitude by "howmany * 1000" where "howmany" represent the number of times the plane will move up
 		NewAlt = theAlt + (howmany * 1000);
 	}
 	
 	public void loseAlt(int howmany)
 	{
+		// decrease the plane's altitude by "howmany * 1000" where "howmany" represent the number of times the plane will move down
 		NewAlt = theAlt - (howmany * 1000);
 		if(NewAlt < 0)
 		{
@@ -63,11 +69,13 @@ public class Airplane
 	
 	public int getAlt()
 	{
+		// return the new altitude after increasing/decreasing its height
 		return NewAlt;
 	}
 	
 	public String toString()
 	{
+		// Output all info for a plane
 		String StrDir = ThreePlaces(theDir);
 		allField = theCs + " - " + theDist + " miles away at bearing " + StrDir + "°, altitude " + theAlt + " feet";
 		return allField;
