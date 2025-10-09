@@ -1,3 +1,4 @@
+// Collect all info and display all outputs
 package javaPack;
 
 import java.util.Scanner;
