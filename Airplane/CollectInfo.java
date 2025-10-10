@@ -1,10 +1,11 @@
-// Collect all info and display all outputs
+// Class that collect all info and display all outputs
 package javaPack;
 
 import java.util.Scanner;
 
 public class CollectInfo 
 {
+	// declare and initialize variables
 	String callsign;
 	double distance = 0.0;
 	int direction = 0;
@@ -19,23 +20,27 @@ public class CollectInfo
 	
 	public void AllInfo()
 	{
+		// create 2 new Airplane objects planeinfo1 and planeinfo2 for their info
 		Airplane planeinfo1 = new Airplane();
 		Airplane planeinfo2 = new Airplane("AAA02", 15.8, 128, 30000);
 		
+		// inputs for plane 3
 		System.out.print("Enter the call-sign of the third airplane: ");
 		callsign = allinput.nextLine();
 		
 		System.out.print("Enter its horizontal distance in miles from the tower (as a positive number): ");
 		distance = allinput.nextDouble();
 		
-		System.out.print("Enter its bearing from the tower (as an integer): ");
+		System.out.print("Enter its bearing from the tower (as an integerfrom 0 to 360): ");
 		direction = allinput.nextInt();
 		
 		System.out.print("Enter its a positive altitude in feet (as an integer): ");
 		altitude = allinput.nextInt();
 		
+		// create a new Airplane object planeinfo3 and use user input
 		Airplane planeinfo3 = new Airplane(callsign, distance, direction, altitude);
 		
+		// move the planes to new positions
 		planeinfo1.gainAlt(3);
 		planeinfo2.loseAlt(2);
 		planeinfo3.loseAlt(4);
@@ -43,6 +48,7 @@ public class CollectInfo
 		planeinfo2.move(8.0, 135);
 		planeinfo3.move(5.0, 55);
 		
+		// all outputs
 		System.out.println("\nInitial Positions");
         System.out.println("Airplane 1: " + planeinfo1.toString());
         System.out.println("Airplane 2: " + planeinfo2.toString());
