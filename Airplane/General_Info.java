@@ -1,4 +1,4 @@
-// Calls the constructor CollectInfo and starts running the program
+// Main class to start the program by creating a CollectInfo object
 package javaPack;
 
 public class General_Info {
@@ -7,5 +7,5 @@ public class General_Info {
 	{
 		CollectInfo collect = new CollectInfo();
 	}
-
+	
 }
