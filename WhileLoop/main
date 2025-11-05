@@ -1,0 +1,9 @@
+package javaPack;
+
+public class MainProgram {
+
+	public static void main(String[] args) 
+	{
+		CollectInfo allinfo = new CollectInfo();
+	}
+}
