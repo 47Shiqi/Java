@@ -22,7 +22,7 @@ public class CollectInfo
 		//System.out.print(yesorno);
 		if (yesorno)
 		{
-			Calculate gradeinfo = new Calculate(numgrades);
+			AskGrade(numgrades);
 		}
 		else
 		{
@@ -33,7 +33,7 @@ public class CollectInfo
 	
 	public boolean CheckNum(float gradenum)
 	{
-		boolean boolstate = true;
+		//boolean boolstate = true;
 		
 		float isyes = gradenum % 1;
 		//System.out.print(gradenum % 1);
@@ -54,10 +54,40 @@ public class CollectInfo
 		}
 	}
 	
-	public void AskGrade()
+	public void AskGrade(float numberGrades)
 	{
 		float grade;
-		System.out.print("Enter your grade: ");
-		grade = allinput.nextFloat();
+		boolean yesorno;
+		int howmany = (int) numberGrades;
+		
+		while (howmany > 0)
+		{
+			System.out.print("Enter your grade: ");
+			grade = allinput.nextFloat();
+			yesorno = CheckGrades(grade);
+			if (yesorno)
+			{
+				howmany = howmany - 1;
+				Calculate gradeinfo = new Calculate(grade); 
+			}
+			else
+			{
+				System.out.println("Please enter a grade between 0 and 100");
+			}
+		}
+	}
+	
+	public boolean CheckGrades(float thegrade)
+	{
+		//boolean boolstate = true;
+
+		if (thegrade < 0 || thegrade > 100)
+		{
+			return false; // not a number b/w 0-100
+		}
+		else
+		{
+			return true; // meets criteria;
+		}
 	}
 }
