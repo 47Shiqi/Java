@@ -1,3 +1,5 @@
+// Class that collects all info and display all results
+
 package javaPack;
 
 import java.util.Scanner;
@@ -13,13 +15,12 @@ public class CollectInfo
 	
 	public void AskInfo()
 	{
-		float numgrades;
-		boolean yesorno;
+		float numgrades; // initialize variables
+		boolean yesorno; 
 		
 		System.out.print("How many grades will you be averaging? ");
 		numgrades = allinput.nextFloat();
-		yesorno = CheckNum(numgrades);
-		//System.out.print(yesorno);
+		yesorno = CheckNum(numgrades); // check the number of grades
 		if (yesorno)
 		{
 			AskGrade(numgrades);
@@ -27,16 +28,13 @@ public class CollectInfo
 		else
 		{
 			System.out.println("Invalid input, please enter an integer between 1 and 100");
-			AskInfo();
+			AskInfo(); // restart if the input is invalid
 		}
 	}
 	
 	public boolean CheckNum(float gradenum)
-	{
-		//boolean boolstate = true;
-		
+	{		
 		float isyes = gradenum % 1;
-		//System.out.print(gradenum % 1);
 		if (isyes > 0)
 		{
 			return false; // not an integer
@@ -56,30 +54,35 @@ public class CollectInfo
 	
 	public void AskGrade(float numberGrades)
 	{
-		float grade;
+		double grade; // initialize variables
 		boolean yesorno;
 		int howmany = (int) numberGrades;
-		
-		while (howmany > 0)
+		int count = howmany;
+		double avg = 0;
+
+		while (count > 0)
 		{
 			System.out.print("Enter your grade: ");
-			grade = allinput.nextFloat();
-			yesorno = CheckGrades(grade);
+			grade = allinput.nextDouble();
+			yesorno = CheckGrades(grade); // check the grade
 			if (yesorno)
 			{
-				howmany = howmany - 1;
-				Calculate gradeinfo = new Calculate(grade); 
+				count = count - 1;
+				Calculate gradeinfo = new Calculate(grade); // create an object for grade info
+				System.out.println("GPA: " + gradeinfo.GetGPA()); // print grade info for this grade
+				System.out.println("Letter Grade: " + gradeinfo.GetLetter());
+				avg = avg + grade;
 			}
 			else
 			{
 				System.out.println("Please enter a grade between 0 and 100");
 			}
 		}
+		DisplayAVG(avg,howmany);
 	}
 	
-	public boolean CheckGrades(float thegrade)
+	public boolean CheckGrades(double thegrade)
 	{
-		//boolean boolstate = true;
 
 		if (thegrade < 0 || thegrade > 100)
 		{
@@ -89,5 +92,16 @@ public class CollectInfo
 		{
 			return true; // meets criteria;
 		}
+	}
+	
+	public void DisplayAVG(double average, int num)
+	{
+		int TruncateAverage = (int) (average / num * 100); // get the average and multiply by 100 and truncate
+		average = TruncateAverage / 100.0; // keep two decimal places
+		Calculate avginfo = new Calculate(average); // create an object for average info
+		System.out.println("------------------------"); // print average info
+		System.out.println("Average: " + average);
+		System.out.println("Overall GPA: " + avginfo.GetGPA());
+		System.out.println("Overall Letter Grade: " + avginfo.GetLetter());
 	}
 }
