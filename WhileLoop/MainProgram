@@ -1,3 +1,5 @@
+// Main class to start the program by creating a CollectInfo object
+
 package javaPack;
 
 public class MainProgram {
