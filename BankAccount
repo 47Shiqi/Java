@@ -1,12 +1,9 @@
 package javaPack;
 
-import java.util.Scanner;
 
 public class BankAccount {
 	private String accountHolder;
 	private double accountBalance;
-	
-	Scanner allinput = new Scanner(System.in);
 	
 	//ACCESSORS
 	//These methods retrieve, read, or get the information
@@ -14,8 +11,6 @@ public class BankAccount {
 	
 	public String getAccountHolder()
 	{
-		System.out.println("Enter the account holder's name: ");
-		accountHolder = allinput.nextLine();
 		return accountHolder;
 	}
 	
