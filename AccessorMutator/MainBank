@@ -1,0 +1,30 @@
+package javaPack;
+
+public class MainBank {	//Parent class that starts the program by creating a new BankAccount object
+	public static void main(String[] args)
+	{
+		//Object and constructor creation
+		DisplayMain();
+		}
+	
+	static void DisplayMain()
+	{
+		//Set the mutators to set the data
+		BankAccount myAccount = new BankAccount();
+		
+		//get info
+		System.out.print("Enter the account holder's name: ");
+		myAccount.setAccountHolder();
+		
+		System.out.print("Enter the account amount: ");
+		myAccount.setBalance();
+		
+		System.out.println("User: " + myAccount.getAccountHolder());
+		System.out.println("Balance: $" + myAccount.getBalance());
+		
+		//ask the user if they want to restart
+		System.out.print("Would you like to input another bank account info(enter yes or no)?");
+		myAccount.Restart();
+	}
+
+}
