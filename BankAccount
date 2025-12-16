@@ -1,7 +1,13 @@
 package javaPack;
 
+import java.util.Scanner;
 
-public class BankAccount {
+//Extending the functionality of the MainBank
+//Gets, checks, and return info 
+public class BankAccount extends MainBank
+{
+	Scanner allinput = new Scanner(System.in);
+	
 	private String accountHolder;
 	private double accountBalance;
 	
@@ -23,20 +29,64 @@ public class BankAccount {
 	//These methods modify, manipulate, change the 
 	//information to suite the program's needs
 	//All mutators begin with the word "set"
-	public void setAccountHolder(String name)
+	public void setAccountHolder()
 	{
-		this.accountHolder = "Greetings, " + name + ". I am happy to assist you!";
-	}
-	
-	public void setBalance(double money)
-	{
-		if (money >= 0)
+		String name;
+		name = allinput.nextLine();
+		if(name.equals("")) //checks if the input is blank
 		{
-			this.accountBalance = money;
+			System.out.println("Error! Please enter a name!");
+			MainBank.main(null); //Restarts the MainProgram
 		}
 		else
 		{
-			System.out.println("Error! There is an issue with the transation!");
+			this.accountHolder = "Greetings, " + name + ". I am happy to assist you!";
+		}
+	}
+	
+	public void setBalance()
+	{
+		String strMoney;
+		strMoney = allinput.nextLine();
+		
+		if (strMoney.equals("")) //checks if the input is blank
+		{
+			System.out.println("Error! Please enter an amount!");
+			MainBank.main(null); //Restarts the MainProgram
+		}
+		else
+		{
+			double money = Double.parseDouble(strMoney);
+			if(money < 0) //checks if the input is less than 0
+			{
+				System.out.println("Error! There is an issue with the transation!");
+				MainBank.main(null); //Restarts the MainProgram
+			}
+			else
+			{
+				this.accountBalance = money;
+			}
+		}
+	}
+	
+	public void Restart()
+	{
+		String yesorno;
+		yesorno = allinput.nextLine();
+		//checks if the answer is yes or no
+		if(yesorno.equalsIgnoreCase("yes"))
+		{
+			MainBank.main(null);
+		}
+		else if(yesorno.equalsIgnoreCase("no"))
+		{
+			System.out.println("Thank you! Bye!");
+			System.exit(0);
+		}
+		else
+		{
+			System.out.print("Enter yes or no please: ");
+			Restart(); //asks and checks again
 		}
 	}
 }
