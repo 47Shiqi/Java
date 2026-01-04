@@ -129,7 +129,7 @@ public class Player
 	
 	public void move(int direction, int units)
 	{
-		switch (direction) 
+		switch (direction) //move the player a specific distance in a given direction 
 		{
 	    case 1:
 	        x = x + units;
@@ -156,14 +156,14 @@ public class Player
 	
 	public void teleport(int x, int y, int z)
 	{
-		this.x = x;
+		this.x = x; //Teleport the player to the specified coordinates
 		this.y = y;
 		this.z = z;
 	}
 	
 	public void teleport(Player player)
 	{
-		this.x = player.getX();
+		this.x = player.getX(); //Teleport the player to another player's coordinates
 		this.y = player.getY();
 		this.z = player.getZ();
 	}
@@ -171,15 +171,15 @@ public class Player
 	public void attack(Player player, int damage)
 	{
 		player.hp = player.hp - damage;
-		if(player.hp < 0)
+		if(player.hp < 0) //if the player has negative health, set it to 0
 		{
 			int damageDealt = player.hp + damage;
 			player.hp = 0;
-			this.hp = damageDealt/2 + this.hp;
+			this.hp = damageDealt/2 + this.hp; //add half of the amount of damage dealt to the attacker
 		}
 		else
 		{
-			this.hp = damage/2 + this.hp;
+			this.hp = damage/2 + this.hp; //add half of the amount of damage to the attacker
 		}
 	}
 	
