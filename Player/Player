@@ -1,0 +1,204 @@
+package javaPack;
+
+public class Player 
+{	
+	//initialize all variables
+	private static int numPlayers = 0;
+	private int x;
+	private int y;
+	private int z;
+	private int direction;
+	private int hp;
+	private String name;
+	
+	
+	//Three constructors
+	public Player()
+	{
+		numPlayers = numPlayers + 1;
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+		this.direction = 1;
+		this.hp = 20;
+		this.name = "P" + numPlayers;
+	}
+	
+	public Player(String name, int x, int y, int z)
+	{
+		numPlayers = numPlayers + 1;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.direction = 1;
+		this.hp = 20;
+		this.name = name;
+	}
+	
+	public Player(String name, int x, int y, int z, int health, int direction)
+	{
+		numPlayers = numPlayers + 1;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.name = name;
+		
+		if(direction < 1 || direction > 6) //check if direction is outside of the range of 1 - 6
+		{
+			this.direction = 1;
+		}
+		else
+		{
+			this.direction = direction;
+		}
+		
+		if(health < 0) //check if health point is less than 0
+		{
+			this.hp = 0;
+		}
+		else
+		{
+			this.hp = health;
+		}
+	}
+
+	
+	//Accessors
+	public int getNumPlayers()
+	{
+		return numPlayers;
+	}
+	
+	public String getName() 
+	{
+		return name;
+	}
+	
+	public int getX()
+	{
+		return x;
+	}
+	
+	public int getY()
+	{
+		return y;
+	}
+	
+	public int getZ()
+	{
+		return z;
+	}
+	
+	public int getHP()
+	{
+		return hp;
+	}
+	
+	public int getDirection()
+	{
+		return direction;
+	}
+	
+	public String toString()
+	{
+		String playerInfo = "Name: " + getName() + "\nHealth: " + getHP() 
+		+ "\nCoordinates: X" + getX() + " Y" + getY() + " Z" + getZ() + "\nDirection: " + getDirection();
+		return playerInfo;
+	}
+	
+	//Mutators
+	public void setHP(int hp)
+	{
+		if(hp < 0) //check if health point is less than 0
+		{
+			this.hp = 0;
+		}
+		else
+		{
+			this.hp = hp;
+		}
+	}
+	
+	public void setDirection(int direction)
+	{
+		if(direction >= 1 && direction <= 6) //check if direction is in the range of 1 - 6
+		{
+			this.direction = direction;
+		}
+	}
+	
+	public void move(int direction, int units)
+	{
+		switch (direction) 
+		{
+	    case 1:
+	        x = x + units;
+	        break; 
+	    case 2:
+	    	x = x - units;
+	        break;
+	    case 3:
+	    	y = y + units;
+	        break;
+	    case 4:
+	    	y = y - units;
+	        break;
+	    case 5:
+	    	z = z + units;
+	        break;
+	    case 6:
+	    	z = z - units;
+	        break;
+	    default:
+	        System.out.println("Invalid direction");
+		}
+	}
+	
+	public void teleport(int x, int y, int z)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	
+	public void teleport(Player player)
+	{
+		this.x = player.getX();
+		this.y = player.getY();
+		this.z = player.getZ();
+	}
+	
+	public void attack(Player player, int damage)
+	{
+		player.hp = player.hp - damage;
+		if(player.hp < 0)
+		{
+			int damageDealt = player.hp + damage;
+			player.hp = 0;
+			this.hp = damageDealt/2 + this.hp;
+		}
+		else
+		{
+			this.hp = damage/2 + this.hp;
+		}
+	}
+	
+
+	public double getDistance(int x, int y, int z)
+	{
+		int xdisp = this.x - x;
+		int ydisp = this.y - y;
+		int zdisp = this.z - z;
+		double dist = Math.sqrt(xdisp*xdisp + ydisp*ydisp + zdisp*zdisp);
+
+		double roundDist = (int) (dist * 100); //truncated to two decimal places
+		dist = roundDist/100;
+		
+		return dist;
+	}
+	
+	public double getDistance(Player player)
+	{
+		return getDistance(player.x, player.y, player.z);
+	}
+}
