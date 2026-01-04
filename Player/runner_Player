@@ -1,15 +1,19 @@
+//Main class to start the program and play the game
+
 package javaPack;
 
 public class runner_Player {
 
 	public static void main(String[] args) 
 	{
+		//create a few Player objects
 		Player p1 = new Player();
 		Player p2 = new Player("shiqi",10,20,30);
 		Player p3 = new Player("ben",40,50,60,100,6);
 		Player p4 = new Player();
 		Player p5 = new Player("ben",-11,-22,33,-2,8);
 		
+		//print the initial state of all the players
 		System.out.println(p1.toString());
 		System.out.println("-------------------------");
 		System.out.println(p2.toString());
@@ -21,7 +25,7 @@ public class runner_Player {
 		System.out.println(p5.toString());
 		System.out.println("-------------------------");
 		
-		
+		//play the game
 		System.out.println("The game is in progress...");
 		p3.setHP(50);
 		p4.setHP(-3);
@@ -48,7 +52,7 @@ public class runner_Player {
 		System.out.println("distance between p2 and p5: " + p2.getDistance(p5));
 		System.out.println("-------------------------");
 
-		
+		//print the final state of all the players
 		System.out.println(p1.toString());
 		System.out.println("-------------------------");
 		System.out.println(p2.toString());
