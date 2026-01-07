@@ -6,63 +6,7 @@ public class runner_Player {
 
 	public static void main(String[] args) 
 	{
-		//create a few Player objects
-		Player p1 = new Player();
-		Player p2 = new Player("shiqi",10,20,30);
-		Player p3 = new Player("ben",40,50,60,100,6);
-		Player p4 = new Player();
-		Player p5 = new Player("ben",-11,-22,33,-2,8);
-		
-		//print the initial state of all the players
-		System.out.println(p1.toString());
-		System.out.println("-------------------------");
-		System.out.println(p2.toString());
-		System.out.println("-------------------------");
-		System.out.println(p3.toString());
-		System.out.println("-------------------------");
-		System.out.println(p4.toString());
-		System.out.println("-------------------------");
-		System.out.println(p5.toString());
-		System.out.println("-------------------------");
-		
-		//play the game
-		System.out.println("The game is in progress...");
-		p3.setHP(50);
-		p4.setHP(-3);
-		System.out.println("p3 - hp: " + p3.getHP());
-		System.out.println("p4 - hp: " + p4.getHP());
-		
-		p1.setDirection(2);
-		p2.setDirection(-2);
-		System.out.println("p1 - direction: " + p1.getDirection());
-		System.out.println("p2 - direction: " + p2.getDirection());
-		
-		p4.move(4, 2);
-		p5.move(1, 33);
-		
-		p1.teleport(1,2,3);
-		p2.teleport(p1);
-		
-		p2.attack(p1,4);
-		p5.attack(p3,55);
-		System.out.println("p2 - hp: " + p2.getHP() + ", p1 - hp: " + p1.getHP());
-		System.out.println("p5 - hp: " + p5.getHP() + ", p3 - hp: " + p3.getHP());
-		
-		System.out.println("distance between p1 and the origin: " + p1.getDistance(0,0,0));
-		System.out.println("distance between p2 and p5: " + p2.getDistance(p5));
-		System.out.println("-------------------------");
-
-		//print the final state of all the players
-		System.out.println(p1.toString());
-		System.out.println("-------------------------");
-		System.out.println(p2.toString());
-		System.out.println("-------------------------");
-		System.out.println(p3.toString());
-		System.out.println("-------------------------");
-		System.out.println(p4.toString());
-		System.out.println("-------------------------");
-		System.out.println(p5.toString());
-		System.out.println("-------------------------");
+		CollectInfo collect = new CollectInfo();
 	}
 
 }
