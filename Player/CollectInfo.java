@@ -3,7 +3,7 @@ package javaPack;
 
 import java.util.Scanner;
 
-public class CollectInfo 
+public class CollectInfo extends runner_Player
 {
 	// declare and initialize variables
 	String name;
@@ -12,6 +12,7 @@ public class CollectInfo
 	int z;
 	int hp;
 	int dir;
+	boolean truefalse;
 	
 	Scanner allinput = new Scanner(System.in);
 	
@@ -28,8 +29,7 @@ public class CollectInfo
 		System.out.println("------------------------------");
 		
 		System.out.println("Please provide the name, x, y, and z coordinates for the 2nd player");
-		System.out.print("name: ");
-		name = allinput.nextLine();
+		name = Name();
 		
 		System.out.print("x coordinate(enter an integer please): ");
 		x = allinput.nextInt();
@@ -112,5 +112,25 @@ public class CollectInfo
 		System.out.println("------------------------------");
 		System.out.println(p3.toString());
 		System.out.println("------------------------------");
+		
+		runner_Player.main(null);
+	}
+	
+	public String Name()
+	{
+		String thename;
+		System.out.print("name: ");
+		thename = allinput.nextLine(thename);
+		truefalse = CheckString();
+		if(truefalse == false)
+		{
+			System.out.println("Invalid input, please try again");
+		}
+		return thename;
+	}
+	
+	public boolean CheckString(String aname)
+	{
+		if(aname)
 	}
 }
