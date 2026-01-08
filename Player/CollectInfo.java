@@ -23,7 +23,7 @@ public class CollectInfo extends runner_Player
 	
 	public void AllInfo()
 	{
-		Player p1 = new Player();
+		Player p1 = new Player(); //use default constructor to create a player
 		System.out.println(p1.toString());
 		System.out.println("Default player " + p1.getName() + " is created!");
 		System.out.println("------------------------------");
@@ -36,7 +36,7 @@ public class CollectInfo extends runner_Player
 		
 		Player p2 = new Player(name,x,y,z);
 		
-		System.out.println(p2.toString());
+		System.out.println(p2.toString()); //use default constructor to create a player
 		System.out.println("Player " + name + " is created!");
 		System.out.println("------------------------------");
 		
