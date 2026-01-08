@@ -1,4 +1,4 @@
-//Main class to start the program and play the game
+//Main class to start the program
 
 package javaPack;
 
@@ -7,6 +7,8 @@ public class runner_Player {
 	public static void main(String[] args) 
 	{
 		CollectInfo collect = new CollectInfo();
+		System.out.print("Would you like to play another round of the game(enter yes/y or no/n please)? ");
+		collect.Restart();
 	}
 
 }
