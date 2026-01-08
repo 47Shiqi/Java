@@ -25,21 +25,14 @@ public class CollectInfo extends runner_Player
 	{
 		Player p1 = new Player();
 		System.out.println(p1.toString());
-		System.out.println("Default player P1 is created!");
+		System.out.println("Default player " + p1.getName() + " is created!");
 		System.out.println("------------------------------");
 		
 		System.out.println("Please provide the name, x, y, and z coordinates for the 2nd player");
 		name = Name();
-		
-		System.out.print("x coordinate(enter an integer please): ");
-		x = allinput.nextInt();
-		
-		System.out.print("y coordinate(enter an integer please): ");
-		y= allinput.nextInt();
-		
-		System.out.print("z coordinate(enter an integer please): ");
-		z = allinput.nextInt();
-		allinput.nextLine();
+		x = AskNum("x coordinate(enter an integer please): ");
+		y = AskNum("y coordinate(enter an integer please): ");
+		z = AskNum("z coordinate(enter an integer please): ");
 		
 		Player p2 = new Player(name,x,y,z);
 		
@@ -49,23 +42,13 @@ public class CollectInfo extends runner_Player
 		
 		System.out.println("Please provide the name, x, y, and z coordinates, health, and direction"
 				+ " for the 3rd player");
-		System.out.print("name: ");
-		name = allinput.nextLine();
 		
-		System.out.print("x coordinate(enter an integer please): ");
-		x = allinput.nextInt();
-		
-		System.out.print("y coordinate(enter an integer please): ");
-		y= allinput.nextInt();
-		
-		System.out.print("z coordinate(enter an integer please): ");
-		z = allinput.nextInt();
-		
-		System.out.print("health(enter an integer please): ");
-		hp = allinput.nextInt();
-		
-		System.out.print("direction(enter an integer from 1-6 please): ");
-		dir = allinput.nextInt();
+		name = Name();
+		x = AskNum("x coordinate(enter an integer please): ");
+		y = AskNum("y coordinate(enter an integer please): ");
+		z = AskNum("z coordinate(enter an integer please): ");
+		hp = AskNum("health(enter an integer please): ");
+		dir = AskNum("direction(enter an integer from 1-6 please): ");
 		
 		Player p3 = new Player(name,x,y,z,hp,dir);
 		
@@ -104,6 +87,7 @@ public class CollectInfo extends runner_Player
 		
 		
 		System.out.println("------------------------------");
+		System.out.println("Result:");
 
 		//print the final state of all the players
 		System.out.println(p1.toString());
@@ -112,25 +96,74 @@ public class CollectInfo extends runner_Player
 		System.out.println("------------------------------");
 		System.out.println(p3.toString());
 		System.out.println("------------------------------");
-		
-		runner_Player.main(null);
 	}
 	
 	public String Name()
 	{
 		String thename;
 		System.out.print("name: ");
-		thename = allinput.nextLine(thename);
-		truefalse = CheckString();
+		thename = allinput.nextLine();
+		truefalse = CheckEmpty(thename);
 		if(truefalse == false)
 		{
 			System.out.println("Invalid input, please try again");
+			return Name();
 		}
-		return thename;
+		else
+		{
+			return thename;
+		}
 	}
 	
-	public boolean CheckString(String aname)
+	public boolean CheckEmpty(String string)
 	{
-		if(aname)
+		if(string.equals(""))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+		 
+	}
+	
+	public int AskNum(String question)
+	{
+		String strNum;
+		System.out.print(question);
+		strNum = allinput.nextLine();
+		truefalse = CheckEmpty(strNum);
+		if(truefalse == false)
+		{
+			System.out.println("Invalid input, please try again");
+			return AskNum(question);
+		}
+		else
+		{
+			int thenum = Integer.parseInt(strNum);
+			return thenum;
+		}
+	}
+	
+	public void Restart()
+	{
+		String yesorno;
+		yesorno = allinput.nextLine().toUpperCase();
+		//checks if the answer is yes or no
+		if(yesorno.equals("YES") || yesorno.equals("Y"))
+		{
+			runner_Player.main(null);
+		}
+		else if(yesorno.equals("NO") || yesorno.equals("N"))
+		{
+			System.out.println("Thank you! Bye!");
+			System.exit(0);
+		}
+		else
+		{
+			System.out.print("Enter yes/y or no/n please: ");
+			Restart(); //asks and checks again
+		}
 	}
 }
