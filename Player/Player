@@ -1,3 +1,4 @@
+//Class that has constructors/methods that create, access, or control the players
 package javaPack;
 
 public class Player 
