@@ -1,4 +1,4 @@
-// Class that collect all info 
+// Class that collects and display all info 
 package javaPack;
 
 import java.util.Scanner;
@@ -25,23 +25,23 @@ public class CollectInfo extends runner_Player
 	{
 		Player p1 = new Player(); //use default constructor to create a player
 		System.out.println(p1.toString());
-		System.out.println("Default player " + p1.getName() + " is created!");
+		System.out.println("\nDefault player " + p1.getName() + " is created!");
 		System.out.println("------------------------------");
 		
-		System.out.println("Please provide the name, x, y, and z coordinates for the 2nd player");
+		System.out.println("Please provide the name, x, y, and z coordinates for the next player"); //get the second player's info
 		name = Name();
 		x = AskNum("x coordinate(enter an integer please): ");
 		y = AskNum("y coordinate(enter an integer please): ");
 		z = AskNum("z coordinate(enter an integer please): ");
 		
-		Player p2 = new Player(name,x,y,z);
+		Player p2 = new Player(name,x,y,z); //create a second player using the user inputs
 		
-		System.out.println(p2.toString()); //use default constructor to create a player
-		System.out.println("Player " + name + " is created!");
+		System.out.println(p2.toString()); 
+		System.out.println("\nPlayer " + name + " is created!");
 		System.out.println("------------------------------");
 		
 		System.out.println("Please provide the name, x, y, and z coordinates, health, and direction"
-				+ " for the 3rd player");
+				+ " for the next player"); //get the third player's info
 		
 		name = Name();
 		x = AskNum("x coordinate(enter an integer please): ");
@@ -50,41 +50,42 @@ public class CollectInfo extends runner_Player
 		hp = AskNum("health(enter an integer please): ");
 		dir = AskNum("direction(enter an integer from 1-6 please): ");
 		
-		Player p3 = new Player(name,x,y,z,hp,dir);
+		Player p3 = new Player(name,x,y,z,hp,dir); //create a third player using the user inputs
 		
 		System.out.println(p3.toString());
-		System.out.println("Player " + name + " is created!");
+		System.out.println("\nPlayer " + name + " is created!");
 		System.out.println("------------------------------");
 		
 		
-		//play the game
-		System.out.println("The game is in progress...");
-		p3.setHP(30);
-		System.out.println(p3.getName() + "'s hp is set to " + p3.getHP());
+		//play the game using the mutators
+		System.out.println("The game is in progress..." + "\n");
+		
+		p2.setHP(30);
+		System.out.println(p2.getName() + "'s hp is set to " + p2.getHP());
+		
+		System.out.println(p1.getName() + " - hp: " + p1.getHP() + ", " + p2.getName() + " - hp: " + p2.getHP() + ", " + p3.getName() + " - hp: " + p3.getHP());
+		p2.attack(p1,4);
+		System.out.println(p2.getName() + " attempts to attack " + p1.getName());
+		System.out.println(p1.getName() + " - hp: " + p1.getHP() + ", " + p2.getName() + " - hp: " + p2.getHP() + ", " + p3.getName() + " - hp: " + p3.getHP());
+		p1.attack(p3,55);
+		System.out.println(p1.getName() + " attempts to attack " + p3.getName());
+		System.out.println(p1.getName() + " - hp: " + p1.getHP() + ", " + p2.getName() + " - hp: " + p2.getHP() + ", " + p3.getName() + " - hp: " + p3.getHP() + "\n");
 		
 		p1.setDirection(2);
-		p2.setDirection(-2);
+		p3.setDirection(-2);
 		System.out.println(p1.getName() + "'s direction is set to " + p1.getDirection());
-		System.out.println(p2.getName() + "'s direction is set to " + p2.getDirection());
+		System.out.println(p3.getName() + "'s direction is set to " + p3.getDirection());
 		
 		p1.move(4, 2);
 		p2.move(1, 33);
-		System.out.println(p1.getName() + " moves 2 units to the west");
+		System.out.println(p1.getName() + " moves 2 units down");
 		System.out.println(p2.getName() + " moves 33 units to the north");
 		
 		p3.teleport(p2);
-		System.out.println(p3.getName() + " is teleported to " + p2.getName() + " location.");
+		System.out.println(p3.getName() + " is teleported to " + p2.getName() + "'s location.");
 		
 		System.out.println("distance between " + p3.getName() + " and the origin is " + p3.getDistance(0,0,0));
 		System.out.println("distance between " + p1.getName() + " and " + p2.getName() + " is " + p1.getDistance(p2));
-		
-		p2.attack(p1,4);
-		System.out.println(p2.getName() + " attempts to attack " + p1.getName());
-		System.out.println(p2.getName() + " - hp: " + p2.getHP() + ", " + p1.getName() + " - hp: " + p1.getHP());
-		p1.attack(p3,55);
-		System.out.println(p1.getName() + " attempts to attack " + p3.getName());
-		System.out.println(p1.getName() + " - hp: " + p1.getHP() + ", " + p3.getName() + " - hp: " + p3.getHP());
-		
 		
 		System.out.println("------------------------------");
 		System.out.println("Result:");
@@ -98,16 +99,16 @@ public class CollectInfo extends runner_Player
 		System.out.println("------------------------------");
 	}
 	
-	public String Name()
+	public String Name() //ask the user to enter a name
 	{
 		String thename;
 		System.out.print("name: ");
 		thename = allinput.nextLine();
-		truefalse = CheckEmpty(thename);
+		truefalse = CheckEmpty(thename); //check if the user enters anything
 		if(truefalse == false)
 		{
 			System.out.println("Invalid input, please try again");
-			return Name();
+			return Name(); //ask the name again
 		}
 		else
 		{
@@ -115,7 +116,7 @@ public class CollectInfo extends runner_Player
 		}
 	}
 	
-	public boolean CheckEmpty(String string)
+	public boolean CheckEmpty(String string) //check if a string is blank 
 	{
 		if(string.equals(""))
 		{
@@ -128,7 +129,7 @@ public class CollectInfo extends runner_Player
 		 
 	}
 	
-	public int AskNum(String question)
+	public int AskNum(String question) //ask the user to enter a integer
 	{
 		String strNum;
 		System.out.print(question);
@@ -141,7 +142,7 @@ public class CollectInfo extends runner_Player
 		}
 		else
 		{
-			int thenum = Integer.parseInt(strNum);
+			int thenum = Integer.parseInt(strNum); //convert the string to integer
 			return thenum;
 		}
 	}
@@ -153,6 +154,7 @@ public class CollectInfo extends runner_Player
 		//checks if the answer is yes or no
 		if(yesorno.equals("YES") || yesorno.equals("Y"))
 		{
+			System.out.println("------------------------------");
 			runner_Player.main(null);
 		}
 		else if(yesorno.equals("NO") || yesorno.equals("N"))
