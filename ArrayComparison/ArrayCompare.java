@@ -7,7 +7,7 @@ public class ArrayCompare
 	int minLength; //shortest length
 	int count = 1; //number of words that have the shortest length
 	
-	public void ArrayCompare()
+	public ArrayCompare()
 	{
 		Compare();
 	}
