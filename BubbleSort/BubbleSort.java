@@ -1,6 +1,6 @@
 package javaPack;
 
-public class BubbleSort 
+public class BubbleSort //Class that sorts the numbers in the array
 {
 	public BubbleSort()
 	{
