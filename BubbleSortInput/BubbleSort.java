@@ -38,7 +38,6 @@ public class BubbleSort extends MainProgram //Class that sorts the numbers in th
 		//checks if the answer is yes or no
 		if(yesorno.equals("YES") || yesorno.equals("Y"))
 		{
-			System.out.println("-------------------------------------");
 			MainProgram.main(null);
 		}
 		else if(yesorno.equals("NO") || yesorno.equals("N"))
