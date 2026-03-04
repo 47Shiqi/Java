@@ -28,6 +28,7 @@ public class DisplayMenu
 			default:
 				System.out.println("Opps, something went wrong...");
 		}	
+		OrderMenu menu = new OrderMenu();
 	}
 	
 	public void categoryDisplay(String[] arr)
