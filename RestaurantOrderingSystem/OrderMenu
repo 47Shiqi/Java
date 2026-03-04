@@ -1,0 +1,27 @@
+package javaPack;
+
+import java.util.Scanner;
+
+public class OrderMenu 
+{
+	private int numOrders;
+	static Scanner allinput = new Scanner(System.in);
+	public OrderMenu()
+	{
+		AskNum();
+	}
+	
+	public void AskNum()
+	{
+		System.out.println("How many items do you want to order(Enter a positive integer)? ");
+		String strNumOrders = allinput.nextLine();
+		
+		numOrders = Integer.parseInt(strNumOrders);
+		AskMeal();
+	}
+	
+	public void AskMeal()
+	{
+		
+	}
+}
