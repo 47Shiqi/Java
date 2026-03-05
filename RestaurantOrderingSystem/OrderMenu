@@ -33,7 +33,7 @@ public class OrderMenu
 	
 	public void AskNum()
 	{
-		System.out.print("How many items do you want to order(Enter a positive integer)? ");
+		System.out.print("How many items do you want to order(Enter total amount. For example, enter 2 if you want two " + arrItems[0] + ")? ");
 		String strNumOrders = allinput.nextLine();
 		
 		numOrders = Integer.parseInt(strNumOrders);
