@@ -2,9 +2,12 @@ package javaPack;
 
 public class DisplayMenu 
 {
-	private String breakfast[] = {"a","b","c"};
-	private String lunch[] = {"d","e","f"};
-	private String dinner[] = {"g","h","i"};
+	private String breakfast[] = {"bread","milk","cereals"};
+	private String lunch[] = {"chicken","burger","sandwitch"};
+	private String dinner[] = {"salad","soup","corn"};
+	private double breakfastPrice[] = {2.50, 2.00, 3.75};
+	private double lunchPrice[] = {10.50, 6.50, 5.25};
+	private double dinnerPrice[] = {6.75, 5.50, 4.25};
 	private String category = "";
 	
 	public DisplayMenu(String mycategory)
@@ -17,25 +20,27 @@ public class DisplayMenu
 		switch(category)
 		{
 			case "1":
-				categoryDisplay(breakfast);
+				categoryDisplay("Breakfast",breakfast,breakfastPrice);
 				break;
 			case "2":
-				categoryDisplay(lunch);
+				categoryDisplay("Lunch",lunch,lunchPrice);
 				break;
 			case "3":
-				categoryDisplay(dinner);
+				categoryDisplay("Dinner",dinner,dinnerPrice);
 				break;
 			default:
 				System.out.println("Opps, something went wrong...");
 		}	
-		OrderMenu menu = new OrderMenu();
 	}
 	
-	public void categoryDisplay(String[] arr)
+	public void categoryDisplay(String category, String[] arr, double[] arrP)
 	{
+		System.out.println("-----" + category + "-----");
 		for(int i=0; i<arr.length; i++)
 		{
-			System.out.println((i+1) + ". " + arr[i]);
+			System.out.println((i+1) + ". " + arr[i] + " - $" + arrP[i]);
 		}
+		OrderMenu order = new OrderMenu(arr,arrP);
+		order.AskNum();
 	}
 }
