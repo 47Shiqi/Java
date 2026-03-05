@@ -1,19 +1,39 @@
 package javaPack;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
-public class OrderMenu 
+public class OrderMenu
 {
-	private int numOrders;
 	static Scanner allinput = new Scanner(System.in);
+	
+	static ArrayList<String> allItems = new ArrayList<>();
+	static ArrayList<Double> allPrices = new ArrayList<>();
+	private String[] arrItems;
+	private double[] arrPrices;
+	private int numOrders;
+	private int intItem;
+	
+	public OrderMenu(String[] myArr, double[] myArrP)
+	{
+		arrItems = myArr;
+		arrPrices = myArrP;
+	}
+	
 	public OrderMenu()
 	{
-		AskNum();
+		//default constructor
+	}
+	
+	public void clearArrayLists()
+	{
+		allItems.clear();
+		allPrices.clear();
 	}
 	
 	public void AskNum()
 	{
-		System.out.println("How many items do you want to order(Enter a positive integer)? ");
+		System.out.print("How many items do you want to order(Enter a positive integer)? ");
 		String strNumOrders = allinput.nextLine();
 		
 		numOrders = Integer.parseInt(strNumOrders);
@@ -22,6 +42,50 @@ public class OrderMenu
 	
 	public void AskMeal()
 	{
+		for (int i=0; i<numOrders; i++)
+		{
+			System.out.print((i+1) + ") " + "Enter a number to choose from the items: ");
+			String strItem = allinput.nextLine();
+			intItem = Integer.parseInt(strItem);
+			allItems.add(arrItems[intItem-1]);
+			allPrices.add(arrPrices[intItem-1]);
+		}
 		
+		System.out.print("Do you want to add items from another category(Enter Y/Yes or N/No please)? ");
+		
+		boolean yesorno = addMore();
+		if(yesorno == true)
+		{
+			System.out.println("Enter 1, 2, or 3 to choose a category \n1. Breakfast \n2. Lunch \n3. Dinner");
+			String category = allinput.nextLine();
+			
+			DisplayMenu newMenu = new DisplayMenu(category);
+			newMenu.Display();
+		}
+		else
+		{
+			Receipt receipt = new Receipt(allItems,allPrices);
+			receipt.getPrice();
+		}
+	}
+	
+	public boolean addMore()
+	{
+		String yesorno;
+		yesorno = allinput.nextLine().toUpperCase();
+		//checks if the answer is yes or no
+		if(yesorno.equals("YES") || yesorno.equals("Y"))
+		{
+			return true;
+		}
+		else if(yesorno.equals("NO") || yesorno.equals("N"))
+		{
+			return false;
+		}
+		else
+		{
+			System.out.println("Enter yes/y or no/n please: ");
+			return addMore(); //asks and checks again
+		}
 	}
 }
