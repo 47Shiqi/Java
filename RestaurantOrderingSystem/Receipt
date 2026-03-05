@@ -1,0 +1,63 @@
+package javaPack;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Receipt extends MainRestaurant
+{
+	static Scanner allinput = new Scanner(System.in);
+	ArrayList<String> items = new ArrayList<>();
+	ArrayList<Double> prices = new ArrayList<>();
+	
+	public Receipt(ArrayList<String> myItems,ArrayList<Double> myPrices)
+	{
+		items = myItems;
+		prices = myPrices;
+	}
+	
+	public void getPrice()
+	{
+		System.out.println("-----Receipt-----");
+		for(int i=0; i<items.size(); i++)
+		{
+			System.out.println((i+1) + ". " + items.get(i) + " - $" + prices.get(i));
+		}
+		System.out.println("Total Price: $" + totalPrice());
+		
+		System.out.print("Do you want to restart(Enter Y/Yes or N/No please)? ");
+		Restart();
+	}
+	
+	public double totalPrice()
+	{
+		double total = 0;
+		for(int i=0; i<prices.size(); i++)
+		{
+			total = total + prices.get(i);
+		}
+		return total;
+	}
+	
+	public static void Restart()
+	{
+		String yesorno;
+		yesorno = allinput.nextLine().toUpperCase();
+		//check if the answer is yes or no
+		if(yesorno.equals("YES") || yesorno.equals("Y"))
+		{
+			OrderMenu newOrder = new OrderMenu();
+			newOrder.clearArrayLists();
+			MainRestaurant.main(null);
+		}
+		else if(yesorno.equals("NO") || yesorno.equals("N"))
+		{
+			System.out.println("Thank you! Bye!");
+			System.exit(0);
+		}
+		else
+		{
+			System.out.println("Enter yes/y or no/n please: ");
+			Restart(); //ask and checks again
+		}
+	}
+}
