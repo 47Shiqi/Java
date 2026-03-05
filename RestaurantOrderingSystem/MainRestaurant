@@ -7,7 +7,8 @@ public class MainRestaurant
 	static Scanner allinput = new Scanner(System.in);
 	public static void main(String[] args) 
 	{
-		System.out.println("Welcome to my restaurant! \n1. Breakfast \n2. Lunch \n3. Dinner");
+		System.out.println("Welcome to my restaurant! Enter 1, 2, or 3 to choose a category"
+				+ "\n1. Breakfast \n2. Lunch \n3. Dinner");
 		String category = allinput.nextLine();
 		
 		DisplayMenu menu = new DisplayMenu(category);
