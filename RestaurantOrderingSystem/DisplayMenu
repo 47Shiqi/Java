@@ -1,6 +1,6 @@
 package javaPack;
 
-public class DisplayMenu 
+public class DisplayMenu extends MainRestaurant
 {
 	private String breakfast[] = {"bread","milk","cereals"};
 	private String lunch[] = {"chicken","burger","sandwitch"};
@@ -29,7 +29,8 @@ public class DisplayMenu
 				categoryDisplay("Dinner",dinner,dinnerPrice);
 				break;
 			default:
-				System.out.println("Opps, something went wrong...");
+				System.out.println("Please enter 1, 2, or 3 only");
+				MainRestaurant.main(null);
 		}	
 	}
 	
