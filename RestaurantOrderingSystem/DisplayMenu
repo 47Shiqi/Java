@@ -1,23 +1,26 @@
+//displays all items of a specific category based on user input
 package javaPack;
 
 public class DisplayMenu extends MainRestaurant
 {
-	private String breakfast[] = {"bread","milk","cereals"};
-	private String lunch[] = {"chicken","burger","sandwitch"};
-	private String dinner[] = {"salad","soup","corn"};
-	private double breakfastPrice[] = {2.50, 2.00, 3.75};
-	private double lunchPrice[] = {10.50, 6.50, 5.25};
-	private double dinnerPrice[] = {6.75, 5.50, 4.25};
+	//initialize variables
+	//menu info
+	String breakfast[] = {"Waffles","Pancakes","Omelette"};
+	String lunch[] = {"Cheeseburger","Chicken Sandwich","Chicken Salad"};
+	String dinner[] = {"Grilled Salmon","Spaghetti","Vegetable Stir Fry"};
+	double breakfastPrice[] = {5.50, 4.75, 6.25};
+	double lunchPrice[] = {8.50, 7.75, 9.00};
+	double dinnerPrice[] = {14.50, 12.50, 10.25};
 	private String category = "";
 	
 	public DisplayMenu(String mycategory)
 	{
-		category = mycategory;
+		this.category = mycategory;
 	}
 	
 	public void Display()
 	{
-		switch(category)
+		switch(category) //check the user input and match it with the correct category
 		{
 			case "1":
 				categoryDisplay("Breakfast",breakfast,breakfastPrice);
@@ -37,11 +40,12 @@ public class DisplayMenu extends MainRestaurant
 	public void categoryDisplay(String category, String[] arr, double[] arrP)
 	{
 		System.out.println("-----" + category + "-----");
-		for(int i=0; i<arr.length; i++)
+		for(int i=0; i<arr.length; i++) //print out every item in the array
 		{
 			System.out.println((i+1) + ". " + arr[i] + " - $" + arrP[i]);
 		}
+		//create a new OrderMenu object
 		OrderMenu order = new OrderMenu(arr,arrP);
-		order.AskNum();
+		order.AskMeal();
 	}
 }
