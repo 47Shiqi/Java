@@ -1,3 +1,4 @@
+//performs all calculations and displays a final receipt
 package javaPack;
 
 import java.util.ArrayList;
@@ -6,36 +7,37 @@ import java.util.Scanner;
 public class Receipt extends MainRestaurant
 {
 	static Scanner allinput = new Scanner(System.in);
-	ArrayList<String> items = new ArrayList<>();
-	ArrayList<Double> prices = new ArrayList<>();
+	private ArrayList<String> items = new ArrayList<>();
+	private ArrayList<Double> prices = new ArrayList<>();
+	private ArrayList<Integer> quantities = new ArrayList<>();
+	double totalPrice = 0;
 	
-	public Receipt(ArrayList<String> myItems,ArrayList<Double> myPrices)
+	public Receipt(ArrayList<String> myItems,ArrayList<Double> myPrices,ArrayList<Integer> myQuantities)
 	{
-		items = myItems;
-		prices = myPrices;
+		this.items = myItems;
+		this.prices = myPrices;
+		this.quantities = myQuantities;
 	}
 	
-	public void getPrice()
+	public void printReceipt()
 	{
+		//print the receipt
 		System.out.println("-----Receipt-----");
 		for(int i=0; i<items.size(); i++)
 		{
-			System.out.println((i+1) + ". " + items.get(i) + " - $" + prices.get(i));
+			double myprice = getPrice(prices.get(i),quantities.get(i)); // get the price of each order
+			totalPrice = totalPrice + myprice; // add up prices
+			System.out.println(quantities.get(i) + " " + items.get(i) + " - $" + myprice);
 		}
-		System.out.println("Total Price: $" + totalPrice());
-		
+		System.out.println("Total Price: $" + totalPrice);
+		System.out.println("-----------------");
 		System.out.print("Do you want to restart(Enter Y/Yes or N/No please)? ");
 		Restart();
 	}
 	
-	public double totalPrice()
+	public double getPrice(double theprice, int thequantity)
 	{
-		double total = 0;
-		for(int i=0; i<prices.size(); i++)
-		{
-			total = total + prices.get(i);
-		}
-		return total;
+		return theprice * thequantity; 
 	}
 	
 	public static void Restart()
@@ -46,7 +48,6 @@ public class Receipt extends MainRestaurant
 		if(yesorno.equals("YES") || yesorno.equals("Y"))
 		{
 			OrderMenu newOrder = new OrderMenu();
-			newOrder.clearArrayLists();
 			MainRestaurant.main(null);
 		}
 		else if(yesorno.equals("NO") || yesorno.equals("N"))
@@ -56,7 +57,7 @@ public class Receipt extends MainRestaurant
 		}
 		else
 		{
-			System.out.println("Enter yes/y or no/n please: ");
+			System.out.print("Enter yes/y or no/n please: ");
 			Restart(); //ask and checks again
 		}
 	}
