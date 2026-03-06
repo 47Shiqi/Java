@@ -1,3 +1,4 @@
+//handles the items which the user has ordered
 package javaPack;
 
 import java.util.Scanner;
@@ -6,70 +7,121 @@ import java.util.ArrayList;
 public class OrderMenu
 {
 	static Scanner allinput = new Scanner(System.in);
-	
-	static ArrayList<String> allItems = new ArrayList<>();
+	//work as a shopping cart
+	static ArrayList<String> allItems = new ArrayList<>(); 
 	static ArrayList<Double> allPrices = new ArrayList<>();
+	static ArrayList<Integer> allQuantities = new ArrayList<>();
+	//the menu that will be displayed
 	private String[] arrItems;
 	private double[] arrPrices;
-	private int numOrders;
-	private int intItem;
+	//item quantity and index
+	int intQuantity;
+	int intItem;
 	
 	public OrderMenu(String[] myArr, double[] myArrP)
 	{
-		arrItems = myArr;
-		arrPrices = myArrP;
+		this.arrItems = myArr;
+		this.arrPrices = myArrP;
 	}
 	
-	public OrderMenu()
+	public OrderMenu()//default constructor
 	{
-		//default constructor
+		clearArrayLists(); //clear static clearArrayLists when restarting
 	}
 	
 	public void clearArrayLists()
 	{
 		allItems.clear();
 		allPrices.clear();
+		allQuantities.clear();
 	}
-	
-	public void AskNum()
-	{
-		System.out.print("How many items do you want to order(Enter total amount. For example, enter 2 if you want two " + arrItems[0] + ")? ");
-		String strNumOrders = allinput.nextLine();
-		
-		numOrders = Integer.parseInt(strNumOrders);
-		AskMeal();
-	}
-	
+
 	public void AskMeal()
 	{
-		for (int i=0; i<numOrders; i++)
+		System.out.print("Enter a number to choose from the menu: ");
+		boolean ifTure = false;
+		while(ifTure == false)
 		{
-			System.out.print((i+1) + ") " + "Enter a number to choose from the items: ");
-			String strItem = allinput.nextLine();
-			intItem = Integer.parseInt(strItem);
-			allItems.add(arrItems[intItem-1]);
-			allPrices.add(arrPrices[intItem-1]);
+			intItem = getNum();
+			if(intItem < 1 || intItem > arrItems.length) //check if it is within the range
+			{
+				System.out.print("Please choose a number from the menu: "); //ifTure still equals false, ask again
+			}		
+			else
+			{
+				ifTure = true; //end the while loop
+			}
 		}
 		
-		System.out.print("Do you want to add items from another category(Enter Y/Yes or N/No please)? ");
+		System.out.print("How many of this item do you want (enter a positive integer)? ");		
+		intQuantity = getNum();
 		
+		//add all info to ArrayLists
+		allItems.add(arrItems[intItem-1]);
+		allPrices.add(arrPrices[intItem-1]);
+		allQuantities.add(intQuantity);
+		
+		System.out.print("Do you want to add another item from this menu (Enter Y/Yes or N/No please)? ");
 		boolean yesorno = addMore();
 		if(yesorno == true)
 		{
-			System.out.println("Enter 1, 2, or 3 to choose a category \n1. Breakfast \n2. Lunch \n3. Dinner");
-			String category = allinput.nextLine();
-			
-			DisplayMenu newMenu = new DisplayMenu(category);
-			newMenu.Display();
+			AskMeal(); //ask the user to choose from the current category
 		}
 		else
 		{
-			Receipt receipt = new Receipt(allItems,allPrices);
-			receipt.getPrice();
+			System.out.print("Do you want to add items from another category (Enter Y/Yes or N/No please)? ");
+			yesorno = addMore();
+			if(yesorno == true)
+			{
+				//ask the user to choose a new category
+				System.out.println("Enter 1, 2, or 3 to choose a category \n1. Breakfast \n2. Lunch \n3. Dinner");
+				String category = allinput.nextLine();
+				
+				DisplayMenu newMenu = new DisplayMenu(category);
+				newMenu.Display(); //display the new menu
+			}
+			else
+			{
+				Receipt receipt = new Receipt(allItems,allPrices,allQuantities);
+				receipt.printReceipt(); //pass all info in the shopping cart and print a receipt
+			}
 		}
 	}
 	
-	public boolean addMore()
+	public int getNum()
+	{	
+		String strNumber = allinput.nextLine();
+		boolean tORf = CheckNum(strNumber);
+		while(tORf == false)
+		{
+			System.out.print("Invalid, please try again: ");
+			strNumber = allinput.nextLine();
+	        tORf = CheckNum(strNumber);  //if invalid, ask to try entering again and call CheckNum
+		}
+		return Integer.parseInt(strNumber); //return the integer value when the input is valid
+	}
+	
+	public boolean CheckNum(String strNum)
+	{
+		if(strNum.equals("") || strNum.equals("0")) //check if it is blank or = 0
+		{
+			return false;
+		}
+		else
+		{	
+			int len = strNum.length();
+			for (int i = 0; i < len ; i++) 
+			{
+				if(strNum.charAt(i) < '0' || strNum.charAt(i) > '9')
+				{
+					return false; //check if every char is a number
+				}
+			}
+		}
+		return true;
+	}
+	
+	public boolean addMore()//check if the user wants to add more items(Y/N)
 	{
 		String yesorno;
 		yesorno = allinput.nextLine().toUpperCase();
@@ -84,7 +136,7 @@ public class OrderMenu
 		}
 		else
 		{
-			System.out.println("Enter yes/y or no/n please: ");
+			System.out.print("Enter yes/y or no/n please: ");
 			return addMore(); //asks and checks again
 		}
 	}
