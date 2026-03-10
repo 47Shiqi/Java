@@ -1,0 +1,25 @@
+package javaPack;
+
+public class Use2DArray {
+	
+	public static void main(String[] args)
+	{
+		FoodSetup();
+	}
+	private static void FoodSetup()
+	{
+		//Initialize an array has 2 rows and 3 columns
+		String[][] foodstp = {
+			{"apples", "pears", "peaches"},
+			{"2", "4", "5"}
+		};
+		for (int i=0; i<=foodstp.length-1;i++) //For loop for the rows
+		{
+			for(int j=0; j<=foodstp[i].length-1;j++)//For loop for the columns
+			{
+				System.out.print(foodstp[i][j] + " ");
+			}
+		}
+		System.out.println();
+	}
+}
