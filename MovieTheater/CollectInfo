@@ -1,0 +1,29 @@
+package javaPack;
+
+import java.util.Scanner;
+
+public class CollectInfo 
+{
+	static Scanner allinput = new Scanner(System.in);
+	String[][] allSeats = new String[59][5];
+	String name;
+	String numSeat;
+	String row;
+	String column;
+	int seatReserved = 100;
+	
+	public void AskInfo()
+	{
+		System.out.println("Welcome to my movie theater!");
+		System.out.println("You can reserve a seat or many seats in advance for free membership enrollment");
+		System.out.println("So far we have " + seatReserved + " seats reserved");
+		System.out.println("What is your name?");
+		
+		boolean ifTure = false;
+		while(ifTure == false)
+		{
+			//intItem = getNum();
+		}
+		
+	}
+}
