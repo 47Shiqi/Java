@@ -7,23 +7,97 @@ public class CollectInfo
 	static Scanner allinput = new Scanner(System.in);
 	String[][] allSeats = new String[59][5];
 	String name;
-	String numSeat;
-	String row;
-	String column;
+	int numSeats;
+	int row;
+	int column;
 	int seatReserved = 100;
+	int seatTotal = 295;
+	
+	public CollectInfo()
+	{
+		AskInfo();
+	}
 	
 	public void AskInfo()
 	{
 		System.out.println("Welcome to my movie theater!");
 		System.out.println("You can reserve a seat or many seats in advance for free membership enrollment");
-		System.out.println("So far we have " + seatReserved + " seats reserved");
-		System.out.println("What is your name?");
+		System.out.println("We currently have " + (seatTotal - seatReserved) + " seats left");
 		
+		System.out.print("What is your name? ");
+		name = getName();
+		
+		System.out.print("How many seats do you want to reserve?");
 		boolean ifTure = false;
 		while(ifTure == false)
 		{
-			//intItem = getNum();
+			numSeats = getNum();
+			if(numSeats > (seatTotal-seatReserved)) //check if it is within the range
+			{
+				System.out.print("We only have " + (seatTotal - seatReserved) + " seats left. Please try again: "); //ifTure still equals false, ask again
+			}
+			else
+			{
+				ifTure = true; //end the while loop
+			}
 		}
-		
+	}
+	
+	public String getName()
+	{	
+		String name = allinput.nextLine();
+		boolean tORf = CheckName(name);
+		while(tORf == false)
+		{
+			System.out.print("Invalid, please try again: ");
+			name = allinput.nextLine();
+	        tORf = CheckName(name);  //if invalid, ask to try entering again and call CheckName
+		}
+		return name; //return the name when the input is valid
+	}
+	
+	public boolean CheckName(String strName)
+	{
+		if(strName.equals("")) //check if it is blank
+		{
+			return false;
+		}
+		else
+		{	
+			return true;
+		}
+	}
+	
+	public int getNum()
+	{	
+		String strNumber = allinput.nextLine();
+		boolean tORf = CheckNum(strNumber);
+		while(tORf == false)
+		{
+			System.out.print("Invalid, please try again: ");
+			strNumber = allinput.nextLine();
+	        tORf = CheckNum(strNumber);  //if invalid, ask to try entering again and call CheckNum
+		}
+		return Integer.parseInt(strNumber); //return the integer value when the input is valid
+	}
+	
+	public boolean CheckNum(String strNum)
+	{
+		if(strNum.equals("") || strNum.equals("0")) //check if it is blank or = 0
+		{
+			return false;
+		}
+		else
+		{	
+			int len = strNum.length();
+			for (int i = 0; i < len ; i++) 
+			{
+				if(strNum.charAt(i) < '0' || strNum.charAt(i) > '9')
+				{
+					return false; //check if every char is a number
+				}
+			}
+		}
+		return true;
 	}
 }
