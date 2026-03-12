@@ -18,12 +18,13 @@ public class CollectInfo
 	public CollectInfo()
 	{
 		AskInfo();
+		initializeReservedSeats();
 	}
 	
 	public void AskInfo()
 	{
 		System.out.println("Welcome to my movie theater!");
-		initializeReservedSeats();
+		
 		printSeats();
 		
 		System.out.println("You can reserve a seat or many seats in advance for free membership enrollment");
@@ -90,6 +91,10 @@ public class CollectInfo
 			}
 		}
 		printSeats();
+		
+		System.out.print("Would you like to reserved seats for another person(enter yes/y or no/n please)? ");
+		Theater myTheater = new Theater();
+		myTheater.Restart();
 	}
 	
 	public void initializeReservedSeats()
@@ -207,7 +212,7 @@ public class CollectInfo
 	
 	public boolean checkAvailability(int x, int y)
 	{
-		if(allSeats[x][y] == null)
+		if(allSeats[x-1][y-1] == null)
 		{
 			return true;
 		}
