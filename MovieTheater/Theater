@@ -1,0 +1,39 @@
+package javaPack;
+
+import java.util.Scanner;
+
+public class Theater 
+{
+	static Scanner allinput = new Scanner(System.in);
+	
+	public Theater()
+	{
+		Initialize();
+	}
+	
+	public void Initialize()
+	{
+		
+	}
+	
+	public String Restart()
+	{
+		String yesorno;
+		yesorno = allinput.nextLine().toUpperCase();
+		//check if the answer is yes or no
+		if(yesorno.equals("YES") || yesorno.equals("Y"))
+		{
+			return "Y";
+		}
+		else if(yesorno.equals("NO") || yesorno.equals("N"))
+		{
+			System.out.println("Thank you! Bye!");
+			return "N";
+		}
+		else
+		{
+			System.out.print("Enter yes/y or no/n please: ");
+			return "X";
+		}
+	}
+}
