@@ -17,19 +17,41 @@ public class CollectInfo
 	
 	public CollectInfo()
 	{
-		AskInfo();
 		initializeReservedSeats();
+		WelcomeMsg();
+		AskInfo();	
 	}
 	
-	public void AskInfo()
+	public void initializeReservedSeats()
+	{
+		int theRow = 0;
+		int theColumn = 0;
+		for(int i=0; i<seatReserved; i++)
+		{
+			allSeats[theRow][theColumn] = "anonymous";
+			if(theColumn == column - 1)
+			{
+				theColumn = 0;
+				theRow++;
+			}
+			else
+			{
+				theColumn++;
+			}
+		}
+	}
+	
+	public void WelcomeMsg()
 	{
 		System.out.println("Welcome to my movie theater!");
-		
 		printSeats();
 		
 		System.out.println("You can reserve a seat or many seats in advance for free membership enrollment");
 		System.out.println("We currently have " + (seatTotal - seatReserved) + " seats left(x - occupied; o - empty)");
-		
+	}
+	
+	public void AskInfo()
+	{
 		System.out.print("What is your name? ");
 		name = getName();
 		
@@ -91,29 +113,8 @@ public class CollectInfo
 			}
 		}
 		printSeats();
-		
 		System.out.print("Would you like to reserved seats for another person(enter yes/y or no/n please)? ");
-		Theater myTheater = new Theater();
-		myTheater.Restart();
-	}
-	
-	public void initializeReservedSeats()
-	{
-		int theRow = 0;
-		int theColumn = 0;
-		for(int i=0; i<seatReserved; i++)
-		{
-			allSeats[theRow][theColumn] = "anonymous";
-			if(theColumn == column - 1)
-			{
-				theColumn = 0;
-				theRow++;
-			}
-			else
-			{
-				theColumn++;
-			}
-		}
+		AddAnother();
 	}
 	
 	public void printSeats()
@@ -219,6 +220,25 @@ public class CollectInfo
 		else
 		{
 			return false;
+		}
+	}
+	
+	public void AddAnother()
+	{
+		//System.out.print("Would you like to reserved seats for another person(enter yes/y or no/n please)? ");
+		Theater myTheater = new Theater();
+		String ifRestart = myTheater.Restart();
+		if(ifRestart.equals("Y"))
+		{
+			AskInfo();
+		}
+		else if(ifRestart.equals("N"))
+		{
+			System.exit(0);
+		}
+		else
+		{
+			AddAnother();
 		}
 	}
 }
