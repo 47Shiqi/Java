@@ -1,3 +1,4 @@
+//main class that runs the program
 package javaPack;
 
 public class MainProgram 
