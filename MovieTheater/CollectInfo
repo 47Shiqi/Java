@@ -1,68 +1,46 @@
+//collects and checks all input info
 package javaPack;
 
 import java.util.Scanner;
 
 public class CollectInfo 
 {
+	//initialize variables
 	static Scanner allinput = new Scanner(System.in);
-	String[][] allSeats = new String[5][59];
 	String name;
 	int numSeats;
-	int row = 5;
-	int column = 59;
-	int seatReserved = 100;
-	int seatTotal = 295;
 	int pickRow;
 	int pickColumn;
+	Theater myTheater = new Theater();
 	
 	public CollectInfo()
 	{
-		initializeReservedSeats();
 		WelcomeMsg();
 		AskInfo();	
-	}
-	
-	public void initializeReservedSeats()
-	{
-		int theRow = 0;
-		int theColumn = 0;
-		for(int i=0; i<seatReserved; i++)
-		{
-			allSeats[theRow][theColumn] = "anonymous";
-			if(theColumn == column - 1)
-			{
-				theColumn = 0;
-				theRow++;
-			}
-			else
-			{
-				theColumn++;
-			}
-		}
 	}
 	
 	public void WelcomeMsg()
 	{
 		System.out.println("Welcome to my movie theater!");
-		printSeats();
-		
+		myTheater.printSeats(); //use the method in Theater class
 		System.out.println("You can reserve a seat or many seats in advance for free membership enrollment");
-		System.out.println("We currently have " + (seatTotal - seatReserved) + " seats left(x - occupied; o - empty)");
 	}
 	
 	public void AskInfo()
 	{
+		CheckSeats(); //make sure there are still seats available
+		System.out.println("We currently have " + (myTheater.seatTotal() - myTheater.seatReserved()) + " seats left(x - occupied; o - empty)");
 		System.out.print("What is your name? ");
 		name = getName();
-		
+
 		System.out.print("How many seats do you want to reserve? ");
 		boolean ifTure = false;
 		while(ifTure == false)
 		{
-			numSeats = getNum();
-			if(numSeats > (seatTotal-seatReserved)) //check if it is within the range
+			numSeats = getNum(); //get the input and check if it is a positive integer
+			if(numSeats > (myTheater.seatTotal() - myTheater.seatReserved())) //check if it is within the range
 			{
-				System.out.print("We only have " + (seatTotal - seatReserved) + " seats left. Please try again: "); //ifTure still equals false, ask again
+				System.out.print("We only have " + (myTheater.seatTotal() - myTheater.seatReserved()) + " seats left. Please try again: "); //ifTure still equals false, ask again
 			}
 			else
 			{
@@ -76,10 +54,10 @@ public class CollectInfo
 			boolean truefalse = false;
 			while(truefalse == false)
 			{
-				pickRow = getNum();
-				if(pickRow > row) //check if it is within the range
+				pickRow = getNum(); //get the input and check if it is a positive integer
+				if(pickRow > myTheater.row()) //check if it is within the range
 				{
-					System.out.print("Pick a number from 1 to 5 please: "); //ifTure still equals false, ask again
+					System.out.print("Pick a number from 1 to 5 please: "); //truefalse still equals false, ask again
 				}
 				else
 				{
@@ -90,66 +68,39 @@ public class CollectInfo
 			truefalse = false;
 			while(truefalse == false)
 			{
-				pickColumn = getNum();
-				if(pickColumn > column) //check if it is within the range
+				pickColumn = getNum();//get the input and check if it is a positive integer
+				if(pickColumn > myTheater.column()) //check if it is within the range
 				{
-					System.out.print("Pick a number from 1 to 59 please: "); //ifTure still equals false, ask again
+					System.out.print("Pick a number from 1 to 59 please: "); //truefalse still equals false, ask again
 				}
 				else
 				{
 					truefalse = true; //end the while loop
 				}
 			}
-			boolean ifAvailable = checkAvailability(pickRow,pickColumn);
+			boolean ifAvailable = myTheater.checkAvailability(pickRow,pickColumn,name); //use the method in Theater class
 			if(ifAvailable)
 			{
-				allSeats[pickRow-1][pickColumn-1] = name;
 				System.out.println("Added!");
 			}
 			else
 			{
 				System.out.println("This seat is taken! Choose another seat please");
-				i--;
+				i--; //do not increase i value and ask again
 			}
 		}
-		printSeats();
+		myTheater.printSeats(); //display added seat(s)
 		System.out.print("Would you like to reserved seats for another person(enter yes/y or no/n please)? ");
-		AddAnother();
+		AddAnother(); //ask if the user wants to add more seats
 	}
 	
-	public void printSeats()
+	public void CheckSeats()
 	{
-		System.out.print("   ");
-		for(int i=1; i<=column; i++)
+		int seatsLeft = myTheater.seatTotal() - myTheater.seatReserved();
+		if(seatsLeft == 0)
 		{
-			String stri = Integer.toString(i);
-			if(stri.length() == 1)
-			{
-				System.out.print(i + "  ");
-			}
-			else
-			{
-				System.out.print(i + " ");
-			}
-			
-		}
-		System.out.println();
-		
-		for(int i=0; i<row; i++)
-		{
-			System.out.print((i+1) + "  ");
-			for(int j=0; j<column; j++)
-			{
-				if(allSeats[i][j] == null)
-				{
-					System.out.print("o  ");
-				}
-				else
-				{
-					System.out.print("x  ");
-				}
-			}
-			System.out.println();
+			System.out.println("Thank you for your support. All seats are sold out.");
+			System.exit(0); //end the program when all seats are sold out
 		}
 	}
 	
@@ -161,7 +112,7 @@ public class CollectInfo
 		{
 			System.out.print("Invalid, please try again: ");
 			name = allinput.nextLine();
-	        tORf = CheckName(name);  //if invalid, ask to try entering again and call CheckName
+	        tORf = CheckName(name);  //if invalid, ask to try entering again and call CheckName again
 		}
 		return name; //return the name when the input is valid
 	}
@@ -186,7 +137,7 @@ public class CollectInfo
 		{
 			System.out.print("Invalid, please try again: ");
 			strNumber = allinput.nextLine();
-	        tORf = CheckNum(strNumber);  //if invalid, ask to try entering again and call CheckNum
+	        tORf = CheckNum(strNumber);  //if invalid, ask to try entering again and call CheckNum again
 		}
 		return Integer.parseInt(strNumber); //return the integer value when the input is valid
 	}
@@ -211,34 +162,25 @@ public class CollectInfo
 		return true;
 	}
 	
-	public boolean checkAvailability(int x, int y)
-	{
-		if(allSeats[x-1][y-1] == null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
 	public void AddAnother()
 	{
-		//System.out.print("Would you like to reserved seats for another person(enter yes/y or no/n please)? ");
-		Theater myTheater = new Theater();
-		String ifRestart = myTheater.Restart();
-		if(ifRestart.equals("Y"))
+		String yesorno;
+		yesorno = allinput.nextLine().toUpperCase();
+		//check if the answer is yes or no
+		if(yesorno.equals("YES") || yesorno.equals("Y"))
 		{
 			AskInfo();
 		}
-		else if(ifRestart.equals("N"))
+		else if(yesorno.equals("NO") || yesorno.equals("N"))
 		{
+			System.out.println("Thank you! Bye!");
 			System.exit(0);
 		}
 		else
 		{
+			System.out.print("Enter yes/y or no/n please: ");
 			AddAnother();
 		}
+		
 	}
 }
