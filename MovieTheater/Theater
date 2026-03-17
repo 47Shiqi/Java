@@ -1,39 +1,106 @@
+//performs theater seats assignments tasks
 package javaPack;
-
-import java.util.Scanner;
 
 public class Theater 
 {
-	static Scanner allinput = new Scanner(System.in);
+	//initialize variables
+	String[][] allSeats = new String[5][59];
+	int row = 5;
+	int column = 59;
+	int seatReserved = 100; //set seats that are already reserved
+	int seatTotal = 295;
 	
 	public Theater()
 	{
-		Initialize();
+		initializeReservedSeats();
 	}
 	
-	public void Initialize()
+	public void initializeReservedSeats()
 	{
-		
-	}
-	
-	public String Restart()
-	{
-		String yesorno;
-		yesorno = allinput.nextLine().toUpperCase();
-		//check if the answer is yes or no
-		if(yesorno.equals("YES") || yesorno.equals("Y"))
+		int theRow = 0;
+		int theColumn = 0;
+		for(int i=0; i<seatReserved; i++)//label the seats that are already reserved "anonymous"
 		{
-			return "Y";
+			allSeats[theRow][theColumn] = "anonymous"; 
+			if(theColumn == column - 1)// when an entire row is filled
+			{
+				theColumn = 0; //reset the column
+				theRow++; //go to the next row
+			}
+			else
+			{
+				theColumn++; //go to the next column
+			}
 		}
-		else if(yesorno.equals("NO") || yesorno.equals("N"))
+	}
+	
+	public int seatTotal()
+	{
+		return seatTotal;
+	}
+	
+	public int seatReserved()
+	{
+		return seatReserved;
+	}
+	
+	public int row()
+	{
+		return row;
+	}
+	
+	public int column()
+	{
+		return column;
+	}
+	
+	public boolean checkAvailability(int x, int y, String username)
+	{
+		if(allSeats[x-1][y-1] == null) //if the chosen seat is available
 		{
-			System.out.println("Thank you! Bye!");
-			return "N";
+			allSeats[x-1][y-1] = username; //label it with the user's name
+			seatReserved++; //number of reserved seats would increase
+			return true;
 		}
 		else
 		{
-			System.out.print("Enter yes/y or no/n please: ");
-			return "X";
+			return false;
+		}
+	}
+	
+	public void printSeats()
+	{
+		System.out.print("   ");
+		for(int i=1; i<=column; i++)//print the column labels
+		{
+			String stri = Integer.toString(i);
+			if(stri.length() == 1)//check if the column number has only one single digit
+			{
+				System.out.print(i + "  ");
+			}
+			else
+			{
+				System.out.print(i + " ");
+			}
+			
+		}
+		System.out.println();
+		
+		for(int i=0; i<row; i++)
+		{
+			System.out.print((i+1) + "  ");
+			for(int j=0; j<column; j++)
+			{
+				if(allSeats[i][j] == null) //print "o" for empty seats and "x" for reserved seats
+				{
+					System.out.print("o  ");
+				}
+				else
+				{
+					System.out.print("x  ");
+				}
+			}
+			System.out.println();
 		}
 	}
 }
