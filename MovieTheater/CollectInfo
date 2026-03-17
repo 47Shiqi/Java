@@ -29,7 +29,7 @@ public class CollectInfo
 	public void AskInfo()
 	{
 		CheckSeats(); //make sure there are still seats available
-		System.out.println("We currently have " + (myTheater.seatTotal() - myTheater.seatReserved()) + " seats left(x - occupied; o - empty)");
+		System.out.println("We currently have " + (myTheater.seatTotal() - myTheater.seatReserved()) + " seats left(x = occupied, o = empty)");
 		System.out.print("What is your name? ");
 		name = getName();
 
