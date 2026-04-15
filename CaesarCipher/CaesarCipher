@@ -1,0 +1,59 @@
+package javaPack;
+
+public class CaesarCipher 
+{
+	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+			"O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	
+	public static void main(String[] args) 
+	{
+		System.out.println(letterToNum("A"));
+	}
+	
+	/** Returns an encoded version of msg by applying a Caesar
+	* Cipher with a shift specified by the parameter shift.
+	* Preconditions: msg contains only upper case letter
+	* characters, shift is greater than or equal to 0
+	*/
+	public static String encode(String msg, int shift)
+	{
+		return "dd";
+	}
+	
+	/** Returns a String consisting of every possible Caesar Cipher
+	* encoded version of msg, beginning with the original (shift of 0),
+	* and sequentially increasing the shift until the String ends with
+	* msg encoded with a shift of 25. Each encoded message should
+	* be on a separate line.
+	* Precondition: msg contains only upper case letter characters
+	*/
+	public static String allEncodings(String msg)
+	{
+		return "gg";
+	}
+	
+	/** Returns the number representing the position of letter in the
+	* alphabet, where A is at position 0, Z is at position 25
+	* Precondition: letter is a String containing one uppercase
+	* letter character only.
+	*/
+	
+	private static int letterToNum(String letter)
+	{
+		for(int i=0; i<alphabet.length; i++)
+		{
+			return 1;
+		}
+		return 1;
+	}
+	
+	/** Returns a String consisting of the single upper case letter which
+	* is at the position num in the alphabet, where A is at position 0,
+	* Z is at position 25
+	* Precondition: num is between 0 and 25 inclusive
+	*/
+	private static String numToLetter(int num)
+	{
+		return "d";
+	}
+}
