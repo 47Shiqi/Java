@@ -1,21 +1,11 @@
 package javaPack;
 
 public class PrimeFinder 
-{ 	
-	public static void Display()
-	{ 
-		System.out.println(isPrime(9));
-		System.out.println(isPrime(2));
-		System.out.println(primesBetween(10,15));
-		System.out.println(primesBetween(29,37));
-		System.out.println(gapToNextPrime(17));
-		System.out.println(gapToNextPrime(90));
-	} 
-	
+{ 		
 	/** Returns the number of prime numbers between lower and upper inclusive 
 	*Precondition: 0 < lower <= upper 
 	*/ 
-	public static int primesBetween(int lower, int upper) 
+	public int primesBetween(int lower, int upper) 
 	{ 
 		int numPrime = 0;
 		for(int i = lower; i <= upper; i++)
@@ -31,7 +21,7 @@ public class PrimeFinder
 	/** Returns the difference between num and the closest prime number which * is greater than or equal to num 
 	* Precondition: num is positive 
 	*/ 
-	public static int gapToNextPrime(int num) 
+	public int gapToNextPrime(int num) 
 	{
 		int difference;
 		int nextNum = num;
@@ -46,20 +36,19 @@ public class PrimeFinder
 	/** Returns true if the integer n is a prime number 
 	* Precondition: n is positive 
 	*/ 
-	private static boolean isPrime(int n) 
+	public boolean isPrime(int n) 
 	{
-		if(n != 2)
+		if(n <= 1)//1 is not a prime or composite number
 		{
-			for(int i=2; i<n; i++)
+			return false;
+		}
+		for(int i=2; i<n; i++)
+		{
+			if(n % i == 0)
 			{
-				if(n % i == 0)
-				{
-					return false;
-				}
+				return false;
 			}
-			return true;
 		}
 		return true;
 	} 
 } 
-
