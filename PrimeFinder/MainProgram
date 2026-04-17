@@ -2,9 +2,15 @@ package javaPack;
 
 public class MainProgram {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) 
+	{
+		PrimeFinder find = new PrimeFinder();
+		System.out.println(find.isPrime(9));
+		System.out.println(find.isPrime(2));
+		System.out.println(find.primesBetween(10,15));
+		System.out.println(find.primesBetween(29,37));
+		System.out.println(find.gapToNextPrime(17));
+		System.out.println(find.gapToNextPrime(90));
 	}
 
 }
