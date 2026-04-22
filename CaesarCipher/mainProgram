@@ -1,0 +1,16 @@
+package javaPack;
+
+public class mainProgram {
+
+	public static void main(String[] args) 
+	{
+		CaesarCipher code = new CaesarCipher();
+		
+		System.out.println(code.letterToNum("Z"));
+		System.out.println(code.numToLetter(3));
+		System.out.println(code.encode("HELLO", 2));
+		System.out.println(code.encode("YOURS", 8));
+		System.out.println(code.allEncodings("APCSP"));
+	}
+
+}
