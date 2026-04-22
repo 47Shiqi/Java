@@ -2,7 +2,7 @@ package javaPack;
 
 public class CaesarCipher 
 {
-	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+	String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
 			"O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	
 	/** Returns an encoded version of msg by applying a Caesar
