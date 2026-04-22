@@ -5,19 +5,23 @@ public class CaesarCipher
 	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
 			"O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	
-	public static void main(String[] args) 
-	{
-		System.out.println(letterToNum("A"));
-	}
-	
 	/** Returns an encoded version of msg by applying a Caesar
 	* Cipher with a shift specified by the parameter shift.
 	* Preconditions: msg contains only upper case letter
 	* characters, shift is greater than or equal to 0
 	*/
-	public static String encode(String msg, int shift)
+	public String encode(String msg, int shift)
 	{
-		return "dd";
+		String newCode = "";
+		for(int i=0; i<msg.length(); i++)
+		{
+			String letter = Character.toString(msg.charAt(i));
+			int index = letterToNum(letter);
+			int newIndex = (index + shift) % 26;
+			String newLetter = numToLetter(newIndex);
+			newCode = newCode + newLetter;
+		}
+		return newCode;
 	}
 	
 	/** Returns a String consisting of every possible Caesar Cipher
@@ -27,9 +31,15 @@ public class CaesarCipher
 	* be on a separate line.
 	* Precondition: msg contains only upper case letter characters
 	*/
-	public static String allEncodings(String msg)
+	public String allEncodings(String msg)
 	{
-		return "gg";
+		String allCode = "";
+		for(int j=0; j<26; j++)
+		{
+			String newCode = encode(msg, j);
+			allCode = allCode + newCode + "\n";
+		}
+		return allCode;
 	}
 	
 	/** Returns the number representing the position of letter in the
@@ -38,13 +48,16 @@ public class CaesarCipher
 	* letter character only.
 	*/
 	
-	private static int letterToNum(String letter)
+	public int letterToNum(String letter)
 	{
 		for(int i=0; i<alphabet.length; i++)
 		{
-			return 1;
+			if(alphabet[i].equals(letter))
+			{
+				return i;
+			}
 		}
-		return 1;
+		return -1;
 	}
 	
 	/** Returns a String consisting of the single upper case letter which
@@ -52,8 +65,8 @@ public class CaesarCipher
 	* Z is at position 25
 	* Precondition: num is between 0 and 25 inclusive
 	*/
-	private static String numToLetter(int num)
+	public String numToLetter(int num)
 	{
-		return "d";
+		return alphabet[num];
 	}
 }
