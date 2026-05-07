@@ -1,0 +1,17 @@
+package javaPack;
+
+public class MainProgram {
+
+	public static void main(String[] args) 
+	{
+		DigitSummarizer digits = new DigitSummarizer();
+		
+		System.out.println(digits.digitSum(1026));
+		System.out.println(digits.digitSum(6660));
+		System.out.println(digits.digitalRoot(98875));
+		System.out.println(digits.digitalRoot(351));
+		System.out.println(digits.containsRoot(736));
+		System.out.println(digits.containsRoot(212));
+	}
+
+}
