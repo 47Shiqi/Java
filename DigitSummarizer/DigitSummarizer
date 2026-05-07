@@ -1,0 +1,56 @@
+package javaPack;
+
+public class DigitSummarizer 
+{
+	/** Returns the single-digit "digital root" of n
+	* Precondition: n is a positive number
+	*/
+	public int digitalRoot(int n)
+	{
+		int sum = digitSum(n);
+		if(sum >= 10)
+		{
+			sum = digitalRoot(sum);
+		}
+		return sum;
+	}
+	
+	/** Returns true if one of the digits of n is equal
+	* to the digital root of n.
+	* Precondition: n is a positive number
+	*/
+	public boolean containsRoot(int n)
+	{
+		int root = digitalRoot(n);
+		int length = String.valueOf(n).length();
+		for(int i=0; i<length; i++)
+		{
+			int digit = n % 10;
+			if(digit == root)
+			{
+				return true;
+			}
+			n = n / 10;
+		}
+		
+		return false;
+	}
+	
+	/** Returns the sum of the digits in n
+	* Precondition: n is a positive number
+	*/
+	public int digitSum(int n)
+	{
+		int length = String.valueOf(n).length();
+		int sum = 0;
+
+		for(int i=0; i<length; i++)
+		{
+			int lastDigit = n % 10;
+			sum = sum + lastDigit;
+			n = n / 10;
+		}
+		return sum;
+	}
+	
+}
