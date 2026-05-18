@@ -1,0 +1,11 @@
+package javaPack;
+
+public class MainProgram {
+
+	public static void main(String[] args) 
+	{
+		Account name = new Account("Amy-Marie-Lin");
+		System.out.println(name.getShortenedName());
+	}
+
+}
