@@ -15,7 +15,7 @@ public class Account
 		int count = 1;
 		while(!isAvailable(name))
 		{
-			name = name + count;
+			name = requestedName + count;
 			count++;
 		}
 		username = name;
