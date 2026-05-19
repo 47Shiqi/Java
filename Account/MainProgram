@@ -4,8 +4,10 @@ public class MainProgram {
 
 	public static void main(String[] args) 
 	{
-		Account name = new Account("Amy-Marie-Lin");
-		System.out.println(name.getShortenedName());
+		Account name1 = new Account("Amy-Marie-Lin");
+		System.out.println(name1.getShortenedName());
+		Account name2 = new Account("SammyB3");
+		System.out.println(name2.getShortenedName());
 	}
 
 }
