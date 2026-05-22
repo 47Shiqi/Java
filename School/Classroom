@@ -1,0 +1,23 @@
+package javaPack;
+
+public class Classroom 
+{
+	private String teacherName;
+	private Student[] Students;
+
+	public Classroom(String name, Student[] students)
+	{
+		 teacherName = name;
+		 Students = students;
+	}
+	
+	public String getTeacher()
+	{
+		return teacherName;
+	}
+	
+	public Student[] getStudents()
+	{
+		return Students;
+	}
+}
