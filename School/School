@@ -1,0 +1,42 @@
+package javaPack;
+
+public class School 
+{
+	private Classroom[] classrooms;
+	
+	public School(Classroom[] rooms)
+	{
+		classrooms = rooms;
+	}
+	
+	public String findStudent(String teacherName, int studentID)
+	{
+		for(int i=0; i<classrooms.length; i++)
+		{
+			if(classrooms[i].getTeacher().equals(teacherName))
+			{
+				//binary search...
+				Student[] students = classrooms[i].getStudents();
+				int lower = 0;
+				int higher = students.length - 1;
+				while(lower <= higher)
+				{
+					int middle = (higher+lower) / 2;
+					if(students[middle].getID() == studentID)
+					{
+						return students[middle].getName();
+					}
+					else if(students[middle].getID() < studentID)
+					{
+						lower = middle + 1;
+					}
+					else
+					{
+						higher = middle - 1;
+					}
+				}
+			}
+		}
+		return "Student Not Found";
+	}
+}
